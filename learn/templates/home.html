@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Maffee Index{% endblock %}
+
+{% block content %}
+{%  include 'ad.html' %}
+<br/>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+
+        <div class="jumbotron">
+            <h1>
+                Welcome to Maffee's Site
+            </h1>
+            <p>
+                {{ string }}
+            </p>
+            <p>
+                 <a class="btn btn-primary btn-large" href="#">Learn more</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-4 column">
+        <h2>
+            Front End
+        </h2>
+        <p>
+            {% for i in FEList %}
+            <strong>{{ i }}</strong>
+            {% endfor %}
+        </p>
+        <p>
+             <a class="btn" href="#">View details »</a>
+        </p>
+    </div>
+    <div class="col-md-4 column">
+        <h2>
+            Back End
+        </h2>
+        <p>
+            {% for key, value in BEDict.items %}
+                {{ key }}: {{ value }}
+            {% endfor %}
+        </p>
+        <p>
+             <a class="btn" href="#">View details »</a>
+        </p>
+    </div>
+    <div class="col-md-4 column">
+        <h2>
+            APP
+        </h2>
+        <p>
+            iOS<br/>
+            Android
+        </p>
+        <p>
+             <a class="btn" href="#">View details »</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

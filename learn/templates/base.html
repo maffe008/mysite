@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}" />
+
+    <title>{% block title %}Default Title{% endblock %}-Msite</title>
+</head>
+<body>
+<div id="mysite">
+    <div class="container">
+    {% include 'nav.html' %}
+
+    {% block content %}
+
+        <p>
+            Powered by Maffee
+        </p>
+
+    {% endblock %}
+
+    {% include 'footer.html' %}
+
+    {% include 'legel.html' %}
+    </div>
+</div>
+
+</body>
+</html>

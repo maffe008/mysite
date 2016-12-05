@@ -8,10 +8,14 @@ body,
   z-index: -1;
 }
 
+div.esri-ui-top-left.esri-ui-corner{
+    left: 300px;
+}
+
 #overviewDiv {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  left: 312px;
+  bottom: 28px;
   width: 300px;
   height: 200px;
   border: 1px solid black;
@@ -24,3 +28,25 @@ body,
   z-index: 2;
 }
 
+#optionDiv{
+    width: 300px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transition: width .25s;
+    display: block;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+#listDiv{
+    width: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: width .25s;
+    display: block;
+    background-color: rgba(0,0,0,0.5);
+}

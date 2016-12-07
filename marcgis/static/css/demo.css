@@ -7,17 +7,16 @@ body,
   width: 100%;
   z-index: -1;
 }
-
-div.esri-ui-top-left.esri-ui-corner{
-    left: 300px;
+.esri-ui-top-left.esri-ui-corner{
+    left: 270px;
 }
 
 #overviewDiv {
   position: absolute;
-  left: 312px;
+  left: 282px;
   bottom: 28px;
-  width: 300px;
-  height: 200px;
+  width: 360px;
+  height: 240px;
   border: 1px solid black;
   z-index: 1;
 }
@@ -28,25 +27,76 @@ div.esri-ui-top-left.esri-ui-corner{
   z-index: 2;
 }
 
+
 #optionDiv{
-    width: 300px;
+
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
     transition: width .25s;
     display: block;
+}
+#optionBar{
+    width: 270px;
+    height: 100vh;
+    float: left;
     background-color: rgba(0,0,0,0.5);
 }
 
+#optionToggle{
+    background-color: rgba(0,0,0,.95);
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
+    height: 70px;
+    width: 25px;
+    margin-top: 42vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    cursor: pointer;
+    float: left;
 
+}
+
+.ToggleLogoleftArrow{
+    background-image: url(../img/chevron_left.svg);
+}
+.ToggleLogoLayer{
+    background-image: url(../img/buffer-white.svg);
+}
+.ToggleLogorightArrow{
+    background-image: url(../img/chevron_right.svg);
+}
+.ToggleLogoEtc{
+    background-image: url(../img/list47.svg);
+}
 #listDiv{
-    width: 300px;
+
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
     transition: width .25s;
     display: block;
+}
+#listBar{
+    width: 270px;
+    height: 100vh;
+    float: right;
     background-color: rgba(0,0,0,0.5);
+}
+#listToggle{
+    background-color: rgba(0,0,0,.95);
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+    height: 70px;
+    width: 25px;
+    margin-top: 42vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    cursor: pointer;
+    float: right;
+
 }

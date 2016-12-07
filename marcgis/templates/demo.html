@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>MArcGIS DEMO</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>MArcGIS DEMO</title>
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
-  <script src="https://js.arcgis.com/4.1/"></script>
-  <script>
+
+
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.1/"></script>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
     require([
       "esri/Map",
       "esri/views/SceneView",
@@ -97,15 +107,76 @@
         }
       });
     });
-  </script>
+
+    $(document).ready(function(){
+        $("#optionToggle").click(function(){
+            $("#optionBar").toggle();
+            $(this).toggleClass("ToggleLogoLayer");
+            if($(".esri-ui-corner").css("left") == "270px"){
+                //alert($(".esri-ui-corner").css("left"));
+                $(".esri-ui-corner").css({"left":"0"});
+                $("#overviewDiv").css({"left":"12px"});
+            }
+            else {
+                //alert($(".esri-ui-corner").css("left"));
+                $(".esri-ui-corner").css({"left":"270px"});
+                $("#overviewDiv").css({"left":"282px"});
+            }
+
+        });
+    });
+    $(document).ready(function(){
+        $("#listToggle").click(function(){
+            $("#listBar").toggle();
+            $(this).toggleClass("ToggleLogoEtc");
+
+        });
+    });
+
+
+    $(function () { $('#collapseOption').collapse('toggle')});
+    </script>
+
+
+
+
 </head>
 
 <body>
-    <div id="viewDiv"></div>
-    <div id="optionDiv"></div>
+    <div id="viewDiv">
+    </div>
+    <div id="optionDiv">
+        <div id="optionBar" >
+
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption">
+                            点击
+                        </a>
+                    </div>
+                    <div id="collapseOption" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            info
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="optionToggle" class="ToggleLogoleftArrow">
+
+        </div>
+    </div>
     <div id="overviewDiv">
         <div id="extentDiv"></div>
     </div>
-    <div id="listDiv"></div>
+    <div id="listDiv">
+        <div id="listBar">
+
+        </div>
+        <div id="listToggle" class="ToggleLogorightArrow"></div>
+    </div>
+
 </body>
 </html>

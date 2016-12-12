@@ -164,6 +164,23 @@
   });
   </script>
 
+    <script type="text/javascript">
+
+
+    function focus_Demo_Block(area,zone,block){
+        if (block != undefined){
+            alert(area + ":" + zone + "-" + block)
+        }
+        else if(block == undefined){
+            alert(area + ":" + zone)
+        }
+        else{
+            alert("focus_Demo_Block ERROR")
+        }
+
+    }
+    </script>
+
 
 </head>
 
@@ -173,7 +190,7 @@
     <div id="optionDiv">
         <div id="optionBar" >
             <div id="optionBar-name">
-                 <h3 class="Bar-name">图层列表<br><small class="small-name">Layer List</small></h3>
+                 <h3 class="Bar-name">图层列表 <small class="small-name">Layer List</small></h3>
             </div>
             <div class="optionToolBar">
                 <div id="Tool1" class="optionToolBlock">
@@ -287,10 +304,155 @@
     <div id="listDiv">
         <div id="listBar">
             <div id="listBar-name">
-                <h3 class="Bar-name">地块列表<br><small class="small-name">Block List</small></h3>
+                <h3 class="Bar-name">地块列表 <small class="small-name">Block List</small></h3>
+            </div>
+            <div id="blockInfo">
+                <h3 class="blockInfo-content" id="blocktitle">博罗县地块***</h3>
+                <div class="alert alert-info" id="blockInfo-status">
+                状态:正常
+                </div>
+                <table>
+                <tr>
+                  <td class="blockInfo-td" id="blockcordN">N:23.xxxxxx </td>
+                  <td class="blockInfo-td" id="blockcordS">S:23.yyyyyy </td>
+                </tr>
+                <tr>
+                  <td class="blockInfo-td" id="blockcordW">W:114.xxxxxx </td>
+                  <td class="blockInfo-td" id="blockcordE">E:114.yyyyyy </td>
+                </tr>
+                </table>
+
+                <h6 class="blockInfo-content" id="blockm2">面积:*****㎡</h6>
+                <h6 class="blockInfo-content" id="blockdate">日期:201x/xx/xx</h6>
+                <h6 class="blockInfo-content" id="blockproduct">作物:作物名</h6>
+                <p class="blockInfo-content" id="blockintro">
+                    无
+                </p>
+            </div>
+            <div class="panel-group blocklist" id="panel-blocklist">
+
+                <!--地块列表|博罗细1-9块-->
+                <div class="blocklist-heading">
+                    <div class="Zonename" >
+                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A')" style="cursor: pointer"></span>
+                        博罗县示例地块A
+                    <a data-toggle="collapse" data-parent="#panel-blocklist" href="#panel-element-demo-Boluo-A">
+                        <span class="glyphicon glyphicon-chevron-down" style="float: right"></span>
+                    </a>
+                    </div>
+                </div>
+                <div id="panel-element-demo-Boluo-A" class="panel-collapse collapse">
+                    <div id="Demo_Block_Boluo_A_01" class="Blockname panel-body "
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','01')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','01')" style="cursor: pointer"></span>
+                        区域01|8水塘
+                    </div>
+                    <div id="Demo_Block_Boluo_A_02" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','02')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','02')" style="cursor: pointer"></span>
+                        区域02|1住宅+8水塘
+                    </div>
+                    <div id="Demo_Block_Boluo_A_03" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','03')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','03')" style="cursor: pointer"></span>
+                        区域03|4水塘
+                    </div>
+                    <div id="Demo_Block_Boluo_A_04" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','04')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','04')" style="cursor: pointer"></span>
+                        区域04|1住宅+10水塘
+                    </div>
+                    <div id="Demo_Block_Boluo_A_06" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','05')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','05')" style="cursor: pointer"></span>
+                        区域05|5干涸水塘+1水塘
+                    </div>
+                    <div id="Demo_Block_Boluo_A_06" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','06')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','06')" style="cursor: pointer"></span>
+                        区域06|1干涸水塘+3水塘
+                    </div>
+                    <div id="Demo_Block_Boluo_A_07" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','07')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','07')" style="cursor: pointer"></span>
+                        区域07|水塘夹角三角区农田
+                    </div>
+                    <div id="Demo_Block_Boluo_A_08" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','08')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','08')" style="cursor: pointer"></span>
+                        区域08|未灌溉农田
+                    </div>
+                    <div id="Demo_Block_Boluo_A_09" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','09')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','09')" style="cursor: pointer"></span>
+                        区域09|灌溉农田
+                    </div>
+                    <div id="Demo_Block_Boluo_A_10" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','10')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','10')" style="cursor: pointer"></span>
+                        区域10|2干涸水塘+8水塘
+                    </div>
+                </div>
+
+                <!--地块列表|博罗细2-3块-->
+                <div class="blocklist-heading">
+                    <div class="Zonename" >
+                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B')" style="cursor: pointer"></span>
+                        博罗县示例地块B
+                    <a data-toggle="collapse" data-parent="#panel-blocklist" href="#panel-element-demo-Boluo-B">
+                        <span class="glyphicon glyphicon-chevron-down" style="float: right"></span>
+                    </a>
+                    </div>
+                </div>
+                <div id="panel-element-demo-Boluo-B" class="panel-collapse collapse">
+                    <div id="Demo_Block_Boluo_B_01" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','B','01')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B','01')" style="cursor: pointer"></span>
+                        区域01|北农田
+                    </div>
+                    <div id="Demo_Block_Boluo_B_02" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','B','02')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B','02')" style="cursor: pointer"></span>
+                        区域02|西农田
+                    </div>
+                    <div id="Demo_Block_Boluo_B_03" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','B','03')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B','03')" style="cursor: pointer"></span>
+                        区域03|东农田
+                    </div>
+                </div>
+
+                <!--地块列表|博罗细3-4块-->
+                <div class="blocklist-heading">
+                    <div class="Zonename" >
+                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C')" style="cursor: pointer"></span>
+                        博罗县示例地块C
+                    <a data-toggle="collapse" data-parent="#panel-blocklist" href="#panel-element-demo-Boluo-C">
+                        <span class="glyphicon glyphicon-chevron-down" style="float: right"></span>
+                    </a>
+                    </div>
+                </div>
+                <div id="panel-element-demo-Boluo-C" class="panel-collapse collapse">
+                    <div id="Demo_Block_Boluo_C_01" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','C','03')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C','03')" style="cursor: pointer"></span>
+                        区域01|跨树林农田
+                    </div>
+                    <div id="Demo_Block_Boluo_C_02" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','C','03')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C','03')" style="cursor: pointer"></span>
+                        区域02|小块农田
+                    </div>
+                    <div id="Demo_Block_Boluo_C_03" class="Blockname panel-body"
+                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','C','03')" onmouseout="remove_OutlineOverlay()">
+                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C','03')" style="cursor: pointer"></span>
+                        区域03|东农田
+                    </div>
+                </div>
             </div>
         </div>
         <div id="listToggle" class="ToggleLogorightArrow"></div>
+
     </div>
 
 </body>

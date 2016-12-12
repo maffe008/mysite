@@ -102,9 +102,7 @@ a:active {color:#f1f2f2;}
 .optionToolBar{
     width: auto;
     height: 70px;
-
     border-bottom: 1px dotted;
-
     border-color: #f1f2f2;
 }
 .optionToolBlock{
@@ -143,12 +141,10 @@ a:active {color:#f1f2f2;}
 }
 
 #listDiv{
-
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
-    transition: width .25s;
     display: block;
 }
 #listBar{
@@ -156,6 +152,59 @@ a:active {color:#f1f2f2;}
     height: 100vh;
     float: right;
     background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
+#blockInfo{
+    margin: 10px;
+    padding: 10px;
+    border: dotted 1px #f1f2f2;
+    width: auto;
+    height: auto;
+    color: #f1f2f2;
+    font-family: "Microsoft YaHei UI Light";
+}
+h3.blockInfo-content{
+    margin-top: 0;
+    color: #f1f2f2;
+}
+h6.blockInfo-content{
+    color: #f1f2f2;
+}
+p.blockInfo-content{
+    color: #f1f2f2;
+}
+#blockInfo-status{
+    margin-bottom: 10px;
+    padding: 0;
+    border-radius: 2px;
+}
+td.blockInfo-td{
+    color: #f1f2f2;
+    font-size:x-small;
+    padding-right: 5px;
+}
+.blocklist{
+
+    border-top: dotted 1px #f1f2f2;
+}
+.blocklist-heading{
+    padding: 5px 15px;
+    border-bottom: dotted 1px #f1f2f2;
+    font-family: "Microsoft YaHei UI Light";
+}
+.Zonename{
+    color: #f1f2f2;
+    font-size: 15px;
+    width: auto;
+}
+.Blockname{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 40px;
+    border-bottom: dotted 1px #f1f2f2;
+    color: #f1f2f2;
+    font-size: 14px;
+    font-family: "Microsoft YaHei UI Light";
 }
 #listToggle{
     background-color: rgba(0,0,0,.95);

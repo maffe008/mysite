@@ -17,7 +17,10 @@
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/jquery-ui.js' %}"></script>
-    <script src="{% static 'js/demo.js' %}"></script>
+    <script src="{% static 'js/demo-option.js' %}"></script>
+    <script src="{% static 'js/demo-jquery.js' %}"></script>
+    <script src="{% static 'js/demo-blockfunc.js' %}"></script>
+    <script src="{% static 'js/demo-jquery-ui.js' %}"></script>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
     <script src="https://js.arcgis.com/4.1/"></script>
@@ -109,78 +112,7 @@
         }
       });
     });
-
-    $(document).ready(function(){
-        $("#optionToggle").click(function(){
-            $("#optionBar").toggle();
-            $(this).toggleClass("ToggleLogoLayer");
-            if($(".esri-ui-corner").css("left") == "300px"){
-                //alert($(".esri-ui-corner").css("left"));
-                $(".esri-ui-corner").css({"left":"0"});
-                $("#overviewDiv").css({"left":"12px"});
-            }
-            else {
-                //alert($(".esri-ui-corner").css("left"));
-                $(".esri-ui-corner").css({"left":"300px"});
-                $("#overviewDiv").css({"left":"312px"});
-            }
-
-        });
-    });
-    $(document).ready(function(){
-        $("#listToggle").click(function(){
-            $("#listBar").toggle();
-            $(this).toggleClass("ToggleLogoEtc");
-
-        });
-    });
-    $(document).ready(function(){
-        $(".optionToolBlock").mouseover(function(){
-            $(this).css({"background-color":"rgba(241,242,242,0.9","color":"#222222"})
-        });
-    });
-    $(document).ready(function(){
-        $(".optionToolBlock").mouseout(function(){
-            $(this).css({"background-color":"transparent","color":"#f1f2f2"})
-        });
-    });
-
     </script>
-
-
-  <script>
-  $(function() {
-    $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 100,
-      values: [50, 95],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( ui.values[0]/100 + " - " + ui.values[1]/100 );
-      }
-    });
-    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 )/100 +
-            " - " + $( "#slider-range" ).slider( "values", 1 )/100 );
-  });
-  </script>
-
-    <script type="text/javascript">
-
-
-    function focus_Demo_Block(area,zone,block){
-        if (block != undefined){
-            alert(area + ":" + zone + "-" + block)
-        }
-        else if(block == undefined){
-            alert(area + ":" + zone)
-        }
-        else{
-            alert("focus_Demo_Block ERROR")
-        }
-
-    }
-    </script>
-
 
 </head>
 
@@ -194,27 +126,28 @@
             </div>
             <div class="optionToolBar">
                 <div id="Tool1" class="optionToolBlock">
-                    <span id="NC_choose" class="optionToolIcon glyphicon glyphicon-search "></span>
+                    <span class="optionToolIcon glyphicon glyphicon-search"></span>
                     <div class="optionToolLabel">Search</div>
                 </div>
                 <div id="Tool2" class="optionToolBlock">
-                    <span id="NC_choose" class="glyphicon glyphicon-question-sign optionToolIcon"></span>
+                    <span class="optionToolIcon glyphicon glyphicon-question-sign"></span>
                     <div class="optionToolLabel">Help</div>
                 </div>
                 <div id="Tool3" class="optionToolBlock">
-                    <span id="NC_choose" class="glyphicon glyphicon-list-alt optionToolIcon"></span>
+                    <span class="optionToolIcon glyphicon glyphicon-list-alt"></span>
                     <div class="optionToolLabel">Report</div>
                 </div>
                 <div id="Tool4" class="optionToolBlock">
-                    <span id="NC_choose" class="glyphicon glyphicon-tags optionToolIcon"></span>
+                    <span class="optionToolIcon glyphicon glyphicon-tags"></span>
                     <div class="optionToolLabel">Tags</div>
                 </div>
-
             </div>
+
             <div class="panel-group" id="accordion">
+
                 <div class="panel-optionBar">
                     <div class="panel-heading">
-                        <span id="NC_choose" class="glyphicon glyphicon-unchecked" onclick="NC_onclick()"></span>
+                        <span id="NC_choose" class="check-box glyphicon glyphicon-unchecked" onclick="NC_onclick()"></span>
                         NC
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-NC">
                             <span class="glyphicon glyphicon-th-large" style="float: right"></span>
@@ -226,9 +159,10 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel-optionBar">
                     <div class="panel-heading">
-                        <span id="CIR_choose" class="glyphicon glyphicon-unchecked" onclick="CIR_onclick()"></span>
+                        <span id="CIR_choose" class="check-box glyphicon glyphicon-unchecked" onclick="CIR_onclick()"></span>
                         CIR
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-CIR">
                             <span class="glyphicon glyphicon-th-large" style="float: right"></span>
@@ -240,9 +174,10 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel-optionBar">
                     <div class="panel-heading">
-                        <span id="NDVI_choose" class="glyphicon glyphicon-unchecked" onclick="NDVI_onclick()"></span>
+                        <span id="NDVI_choose" class="check-box glyphicon glyphicon-unchecked" onclick="NDVI_onclick()"></span>
                         NDVI
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-NDVI">
                             <span class="glyphicon glyphicon-th-large" style="float: right"></span>
@@ -262,9 +197,10 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel-optionBar">
                     <div class="panel-heading">
-                        <span id="Thermal_choose" class="glyphicon glyphicon-unchecked" onclick="Thermal_onclick()"></span>
+                        <span id="Thermal_choose" class="check-box glyphicon glyphicon-unchecked" onclick="Thermal_onclick()"></span>
                         Thermal
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-Thermal">
                             <span class="glyphicon glyphicon-th-large" style="float: right"></span>
@@ -276,10 +212,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="panel-optionBar">
                     <div class="panel-heading">
-                        <span id="DSM_choose" class="glyphicon glyphicon-unchecked" onclick="DSM_onclick()"></span>
+                        <span id="DSM_choose" class="check-box glyphicon glyphicon-unchecked" onclick="DSM_onclick()"></span>
                         DSM
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-DSM">
                             <span class="glyphicon glyphicon-th-large" style="float: right"></span>

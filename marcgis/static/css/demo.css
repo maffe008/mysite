@@ -23,7 +23,9 @@ body,
     color: #f1f2f2;
     font-size: 16px;
 }
-
+.check-box{
+    cursor: pointer;
+}
 #overviewDiv {
   position: absolute;
   left: 312px;
@@ -55,6 +57,7 @@ body,
     float: left;
     background-color: rgba(0,0,0,0.5);
     overflow: auto;
+
 }
 #optionBar-name{
     width: auto;
@@ -64,10 +67,7 @@ body,
     margin-top: 0;
     margin-bottom: 0;
     font-size: 1.6em;
-    padding-top: 25px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 25px 20px 15px;
     font-family: Helvetica,"Microsoft YaHei UI Light";
     color: #f1f2f2;
     background: linear-gradient(rgba(241,242,242,0.5), rgba(0,0,0,0));
@@ -104,6 +104,7 @@ a:active {color:#f1f2f2;}
     height: 70px;
     border-bottom: 1px dotted;
     border-color: #f1f2f2;
+
 }
 .optionToolBlock{
     width: 70px;
@@ -112,6 +113,7 @@ a:active {color:#f1f2f2;}
     padding-top: 15px;
     padding-bottom: 5px;
     color: #f1f2f2;
+
 }
 .optionToolIcon{
     width: 100%;
@@ -119,6 +121,7 @@ a:active {color:#f1f2f2;}
     text-align: center;
     color: inherit;
     font-size: 20px;
+
 }
 .optionToolLabel{
     text-align: center;
@@ -188,7 +191,7 @@ td.blockInfo-td{
     border-top: dotted 1px #f1f2f2;
 }
 .blocklist-heading{
-    padding: 5px 15px;
+    padding: 10px 15px;
     border-bottom: dotted 1px #f1f2f2;
     font-family: "Microsoft YaHei UI Light";
 }

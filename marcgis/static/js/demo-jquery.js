@@ -25,13 +25,25 @@ $(document).ready(function(){
 
     });
 });
+
 $(document).ready(function(){
     $(".optionToolBlock").mouseover(function(){
-        $(this).css({"background-color":"rgba(241,242,242,0.9","color":"#222222"})
+        $(this).css({"background-color":"rgba(241,242,242,0.9)","color":"#222222"})
     });
 });
 $(document).ready(function(){
     $(".optionToolBlock").mouseout(function(){
         $(this).css({"background-color":"transparent","color":"#f1f2f2"})
+    });
+});
+
+$(document).ready(function(){
+    $(".Blockname").mouseover(function(){
+        $(this).css({"background-color":"rgba(241,242,242,0.7)","color":"#222222","font-weight":"bold"})
+    });
+});
+$(document).ready(function(){
+    $(".Blockname").mouseout(function(){
+        $(this).css({"background-color":"transparent","color":"#f1f2f2","font-weight":"normal"})
     });
 });

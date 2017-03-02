@@ -7,42 +7,74 @@
 <br/>
 <div class="row clearfix">
     <div class="col-md-4 column">
-        <h2>
-            Front End
-        </h2>
-        <p>
-            {% for i in FEList %}
-            <strong>{{ i }}</strong>
-            {% endfor %}
-        </p>
-        <p>
-             <a class="btn" href="#">View details »</a>
-        </p>
+        <div class="home-info">
+            <h2>
+                Front End
+            </h2>
+            <p>
+                {% for i in FEList %}
+                <strong>{{ i }}</strong>
+                {% endfor %}
+            </p>
+            <p>
+                 <a class="btn" href="#">View details »</a>
+            </p>
+        </div>
     </div>
     <div class="col-md-4 column">
-        <h2>
-            Back End
-        </h2>
-        <p>
-            {% for key, value in BEDict.items %}
-                {{ key }}: {{ value }}
-            {% endfor %}
-        </p>
-        <p>
-             <a class="btn" href="#">View details »</a>
-        </p>
+        <div class="home-info">
+            <h2>
+                Back End
+            </h2>
+            <p>
+                {% for key, value in BEDict.items %}
+                    {{ key }}: {{ value }}
+                {% endfor %}
+            </p>
+            <p>
+                 <a class="btn" href="#">View details »</a>
+            </p>
+        </div>
     </div>
     <div class="col-md-4 column">
-        <h2>
-            APP
-        </h2>
-        <p>
-            iOS<br/>
-            Android
-        </p>
-        <p>
-             <a class="btn" href="#">View details »</a>
-        </p>
+        <div class="home-info">
+            <h2>
+                Project
+            </h2>
+            <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROJECTS<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li>
+                         <a href="#">SoshineSee</a>
+                    </li>
+                    <li>
+                         <a href="#">CompMan</a>
+                    </li>
+                    <li>
+                         <a href="#">maffee.cn</a>
+                    </li>
+                    <li class="divider">
+                    </li>
+                    <li>
+                         <a href="#">Maffee MOOC</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">WORKS<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li>
+                         <a href="#">iVIC</a>
+                    </li>
+                    <li>
+                         <a href="#">MPX</a>
+                    </li>
+                    <li>
+                         <a href="#">Me2Dreamer</a>
+                    </li>
+                </ul>
+            </li>
+        </div>
     </div>
 </div>
 

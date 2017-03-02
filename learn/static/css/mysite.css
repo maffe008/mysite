@@ -1,19 +1,43 @@
 div#mysite{
-    background-image: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fff)
+    background-image:
+            linear-gradient(180deg, rgba(255,255,255,0) 60%, #fff),
+            linear-gradient(70deg, #dbedff 32%, #ebfff0)
 
 }
-div#mysite-nav{
-
+.container{
+  margin-left: auto;
+  margin-right: auto;
 }
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 90%;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 90%;
+    overflow-x: hidden;
+  }
+}
+
+
 .nav-container {
   padding-right: 0;
   padding-left: 0;
   margin-right: 0;
   margin-left: 0;
+
 }
 @media (min-width: 768px) {
   .nav-container {
     width: 100%;
+
   }
 }
 @media (min-width: 992px) {
@@ -24,6 +48,7 @@ div#mysite-nav{
 @media (min-width: 1200px) {
   .nav-container {
     width: 100%;
+    overflow-x: hidden;
   }
 }
 .nav-container-fluid {
@@ -35,4 +60,17 @@ div#mysite-nav{
 .nav-row {
   margin-right: 0;
   margin-left: 0;
+}
+
+div#footer-description {
+
+}
+div.home-info{
+  background-color: rgba(255,255,255,0.6);
+  padding: 10px;
+  margin: 10px;
+}
+
+div#footer{
+
 }

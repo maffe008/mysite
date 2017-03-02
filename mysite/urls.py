@@ -24,5 +24,5 @@ urlpatterns = [
 
     url(r'^$', learn_views.home, name='home'),
     url(r'^marcgis/$', marcgis_views.index),
-    url(r'^marcgis/demo/$', marcgis_views.demo)
+    url(r'^marcgis/demo/$', marcgis_views.demo, name='demo')
 ]

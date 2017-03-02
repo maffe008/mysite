@@ -22,8 +22,12 @@
     <script src="{% static 'js/demo-blockfunc.js' %}"></script>
     <script src="{% static 'js/demo-jquery-ui.js' %}"></script>
 
+    <!--
     <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
     <script src="https://js.arcgis.com/4.1/"></script>
+    -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.2/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.2/"></script>
 
     <script type="text/javascript">
     require([
@@ -268,13 +272,11 @@
 
                 <!--地块列表|博罗细1-9块-->
                 <div class="blocklist-heading">
-                    <div class="Zonename" >
-                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A')" style="cursor: pointer"></span>
-                        博罗县示例地块A
-                    <a data-toggle="collapse" data-parent="#panel-blocklist" href="#panel-element-demo-Boluo-A">
-                        <span class="glyphicon glyphicon-chevron-down" style="float: right"></span>
-                    </a>
-                    </div>
+                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A')"></span>
+                    博罗县示例地块A
+                    <span class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-parent="#panel-blocklist"
+                          data-target="#panel-element-demo-Boluo-A" style="float: right" ></span>
+
                 </div>
                 <div id="panel-element-demo-Boluo-A" class="panel-collapse collapse">
                     <div id="Demo_Block_Boluo_A_01" class="Blockname panel-body "
@@ -331,13 +333,10 @@
 
                 <!--地块列表|博罗细2-3块-->
                 <div class="blocklist-heading">
-                    <div class="Zonename" >
-                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B')" style="cursor: pointer"></span>
-                        博罗县示例地块B
-                    <a data-toggle="collapse" data-parent="#panel-blocklist" href="#panel-element-demo-Boluo-B">
-                        <span class="glyphicon glyphicon-chevron-down" style="float: right"></span>
-                    </a>
-                    </div>
+                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B')"></span>
+                    博罗县示例地块B
+                    <span class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-parent="#panel-blocklist"
+                          data-target="#panel-element-demo-Boluo-B" style="float: right" ></span>
                 </div>
                 <div id="panel-element-demo-Boluo-B" class="panel-collapse collapse">
                     <div id="Demo_Block_Boluo_B_01" class="Blockname panel-body"
@@ -359,13 +358,10 @@
 
                 <!--地块列表|博罗细3-4块-->
                 <div class="blocklist-heading">
-                    <div class="Zonename" >
-                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C')" style="cursor: pointer"></span>
-                        博罗县示例地块C
-                    <a data-toggle="collapse" data-parent="#panel-blocklist" href="#panel-element-demo-Boluo-C">
-                        <span class="glyphicon glyphicon-chevron-down" style="float: right"></span>
-                    </a>
-                    </div>
+                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C')"></span>
+                    博罗县示例地块C
+                    <span class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-parent="#panel-blocklist"
+                          data-target="#panel-element-demo-Boluo-C" style="float: right"></span>
                 </div>
                 <div id="panel-element-demo-Boluo-C" class="panel-collapse collapse">
                     <div id="Demo_Block_Boluo_C_01" class="Blockname panel-body"

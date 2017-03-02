@@ -194,11 +194,11 @@ td.blockInfo-td{
     padding: 10px 15px;
     border-bottom: dotted 1px #f1f2f2;
     font-family: "Microsoft YaHei UI Light";
-}
-.Zonename{
     color: #f1f2f2;
     font-size: 15px;
-    width: auto;
+}
+.blocklist-heading span{
+    cursor: pointer;
 }
 .Blockname{
     padding-top: 5px;

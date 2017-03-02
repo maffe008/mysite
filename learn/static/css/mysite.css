@@ -1,3 +1,38 @@
 div#mysite{
-    background: linear-gradient(lightsteelblue,lightskyblue);
+    background-image: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fff)
+
+}
+div#mysite-nav{
+
+}
+.nav-container {
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+@media (min-width: 768px) {
+  .nav-container {
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .nav-container {
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  .nav-container {
+    width: 100%;
+  }
+}
+.nav-container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+.nav-row {
+  margin-right: 0;
+  margin-left: 0;
 }

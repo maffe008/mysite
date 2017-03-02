@@ -38,6 +38,17 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+    $(".blocklist-heading").mouseover(function(){
+        $(this).css({"background-color":"rgba(241,242,242,0.7)","color":"#222222","font-weight":"bold"})
+    });
+});
+$(document).ready(function(){
+    $(".blocklist-heading").mouseout(function(){
+        $(this).css({"background-color":"transparent","color":"#f1f2f2","font-weight":"normal"})
+    });
+});
+
+$(document).ready(function(){
     $(".Blockname").mouseover(function(){
         $(this).css({"background-color":"rgba(241,242,242,0.7)","color":"#222222","font-weight":"bold"})
     });

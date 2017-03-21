@@ -18,11 +18,17 @@ from django.contrib import admin
 
 from learn import views as learn_views
 from marcgis import views as marcgis_views
+from django.conf.urls.static import static
+
+from django.conf import settings
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', learn_views.home, name='home'),
-    url(r'^marcgis/$', marcgis_views.index),
-    url(r'^marcgis/demo/$', marcgis_views.demo, name='demo')
+    url(r'^marcgis/$', marcgis_views.index, name='marcgis'),
+    url(r'^marcgis/demo/$', marcgis_views.demo, name='soshinesee'),
+    url(r'^marcgis/alpha/$', marcgis_views.alpha, name='soshinesee_alpha'),
+
+
 ]

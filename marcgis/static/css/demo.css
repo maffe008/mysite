@@ -2,11 +2,30 @@ html,
 body,
 
 #viewDiv {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+#nodisviewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+    opacity: 0.1;
+}
+#NCviewDiv {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-color: #31b0d5;
 }
 .esri-ui-top-left.esri-ui-corner{
     left: 300px;

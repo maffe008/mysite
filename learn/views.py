@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse(u"I am Maffee !\n from 晓壹科技")
+    return HttpResponse(u"I am Maffee !\n from 零晓科技")
 
 
 def home(request):

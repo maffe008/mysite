@@ -1,15 +1,17 @@
 /**
  * Created by Maffee on 2016/12/13.
  */
-function focus_Demo_Block(area,zone,block){
-    if (block != undefined){
-        alert(area + ":" + zone + "-" + block)
+function Demo_focus_Comprt(area,block,comprt){
+    if (block == undefined){
+        alert(area)
     }
-    else if(block == undefined){
-        alert(area + ":" + zone)
+    else if(comprt == undefined){
+        alert(area + ":" + block)
+    }
+    else if (comprt != undefined){
+        alert(area + ":" + block + "|" + comprt)
     }
     else{
-        alert("focus_Demo_Block ERROR")
+        alert("Demo_focus_Comprt ERROR")
     }
-
 }

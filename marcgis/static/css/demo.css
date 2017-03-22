@@ -176,7 +176,7 @@ a:active {color:#f1f2f2;}
     background-color: rgba(0,0,0,0.5);
     overflow: auto;
 }
-#blockInfo{
+#comprtInfo{
     margin: 10px;
     padding: 10px;
     border: dotted 1px #f1f2f2;
@@ -185,29 +185,41 @@ a:active {color:#f1f2f2;}
     color: #f1f2f2;
     font-family: "Microsoft YaHei UI Light";
 }
-h3.blockInfo-content{
+h3.comprtInfo-content{
     margin-top: 0;
     color: #f1f2f2;
 }
-h6.blockInfo-content{
+h6.comprtInfo-content{
     color: #f1f2f2;
 }
-p.blockInfo-content{
+p.comprtInfo-content{
     color: #f1f2f2;
 }
-#blockInfo-status{
+#comprtInfo-status{
     margin-bottom: 10px;
     padding: 0;
     border-radius: 2px;
 }
-td.blockInfo-td{
+td.comprtInfo-td{
     color: #f1f2f2;
     font-size:x-small;
     padding-right: 5px;
 }
+.panel-group {
+  margin-bottom: 0;
+}
 .blocklist{
 
     border-top: dotted 1px #f1f2f2;
+}
+
+.blocklist-heading-Area{
+    padding: 5px 15px;
+    border-bottom: dotted 1px #f1f2f2;
+    font-family: "Microsoft YaHei UI Light";
+    color: #f1f2f2;
+    background-color: rgba(0,0,0,0.8);
+    font-size: 16px;
 }
 .blocklist-heading{
     padding: 10px 15px;

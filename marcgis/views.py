@@ -16,3 +16,13 @@ def demo(request):
 def alpha(request):
     alphaname = u"SoshineSee Alpha"
     return render(request, 'alpha.html', {'alphaname': alphaname})
+
+
+def alpha_blockdata(request):
+    alpha_blockdata = u"SoshineSee BlockData"
+    return render(request, 'alpha_blockdata.html', {'alpha_blockdata': alpha_blockdata})
+
+
+def alpha_radius(request):
+    alpha_radius = u"SoshineSee alpha_radius"
+    return render(request, 'alpha_radius.html', {'alpha_radius': alpha_radius})

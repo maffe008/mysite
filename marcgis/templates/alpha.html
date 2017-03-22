@@ -22,65 +22,70 @@
     <script src="{% static 'js/demo-blockfunc.js' %}"></script>
     <script src="{% static 'js/demo-jquery-ui.js' %}"></script>
 
-    <!--
-    <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.1/"></script>
-    -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.2/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.2/"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.3/"></script>
 
     <script type="text/javascript">
     require([
-      "esri/Map",
-      "esri/views/SceneView",
-      "esri/views/MapView",
-      "esri/core/watchUtils",
-      "dojo/dom",
-      "dojo/promise/all",
-      "dojo/domReady!"
-    ], function InitMap(Map, SceneView, MapView, watchUtils, dom, all)
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/views/MapView",
+        "esri/core/watchUtils",
+        "esri/widgets/Expand",
+        "esri/widgets/BasemapGallery",
+
+        "dojo/dom",
+        "dojo/query",
+        "dojo/on",
+        "dojo/promise/all",
+        "dojo/domReady!"
+
+    ], function (Map, SceneView, MapView, watchUtils, Expand, BasemapGallery, dom, query, on, all)
     {
 
-      // Create a Map with a basemap, to be used with in the main view
-      var mainMap = new Map({
-        basemap: "hybrid",
-        ground: "world-elevation"
-      });
-
-      // Create another Map, to be used in the overview "view"
-      var overviewMap = new Map({
-        basemap: "streets"
-      });
-
-      // Create the SceneView
-      var mainView = new SceneView({
-        container: "nodisviewDiv",
-        map: mainMap
-      });
-
-      mainView.then(function() {
-        mainView.goTo({
-          center: [114.2, 23.1],
-          scale: 20000,
-          heading: 0,
-          tilt: 75
-        }, {
-          animate: false
+        // Create a Map with a basemap, to be used with in the main view
+        var mainMap = new Map({
+            basemap: "hybrid",
+            ground: "world-elevation"
         });
-      });
 
-      // Create the MapView for overview map
-      var mapView = new MapView({
-        container: "overviewDiv",
-        map: overviewMap
-      });
+        // Create another Map, to be used in the overview "view"
+        var overviewMap = new Map({
+            basemap: "streets"
+        });
 
-      // Remove the default widgets
-      mapView.ui.components = [];
+        // Create the SceneView
+        var mainView = new SceneView({
+            container: "nodisviewDiv",
+            map: mainMap,
+            camera: {
+                position: {
+                    x: 107,
+                    y: 21,
+                    z: 9000000
+                },
+                tilt: 10,
+                heading: 0
+            }
 
-      var extentDiv = dom.byId("extentDiv");
+        });
 
-      mapView.then(function() {
+        mainView.then(function() {
+
+        });
+
+        // Create the MapView for overview map
+        var mapView = new MapView({
+            container: "overviewDiv",
+            map: overviewMap
+        });
+
+        // Remove the default widgets
+        mapView.ui.components = [];
+
+        var extentDiv = dom.byId("extentDiv");
+
+        mapView.then(function() {
         // Update the overview extent whenever the MapView or SceneView extent changes
         mainView.watch("extent", updateOverviewExtent);
         mapView.watch("extent", updateOverviewExtent);
@@ -89,33 +94,113 @@
         watchUtils.when(mainView, "stationary", updateOverview);
 
         function updateOverview() {
-          // Animate the MapView to a zoomed-out scale so we get a nice overview.
-          // We use the "progress" callback of the goTo promise to update
-          // the overview extent while animating
-          mapView.goTo({
-            center: mainView.center,
-            scale: mainView.scale * 2 * Math.max(mainView.width /
-              mapView.width,
-              mainView.height / mapView.height)
-          });
+            // Animate the MapView to a zoomed-out scale so we get a nice overview.
+            // We use the "progress" callback of the goTo promise to update
+            // the overview extent while animating
+            mapView.goTo({
+                center: mainView.center,
+                scale: mainView.scale * 2 * Math.max(mainView.width /
+                    mapView.width,
+                    mainView.height / mapView.height)
+            });
         }
 
         function updateOverviewExtent() {
-          // Update the overview extent by converting the SceneView extent to the
-          // MapView screen coordinates and updating the extentDiv position.
-          var extent = mainView.extent;
+            // Update the overview extent by converting the SceneView extent to the
+            // MapView screen coordinates and updating the extentDiv position.
+            var extent = mainView.extent;
 
-          var bottomLeft = mapView.toScreen(extent.xmin, extent.ymin);
-          var topRight = mapView.toScreen(extent.xmax, extent.ymax);
+            var bottomLeft = mapView.toScreen(extent.xmin, extent.ymin);
+            var topRight = mapView.toScreen(extent.xmax, extent.ymax);
 
-          extentDiv.style.top = topRight.y + "px";
-          extentDiv.style.left = bottomLeft.x + "px";
+            extentDiv.style.top = topRight.y + "px";
+            extentDiv.style.left = bottomLeft.x + "px";
 
-          extentDiv.style.height = (bottomLeft.y - topRight.y) + "px";
-          extentDiv.style.width = (topRight.x - bottomLeft.x) + "px";
+            extentDiv.style.height = (bottomLeft.y - topRight.y) + "px";
+            extentDiv.style.width = (topRight.x - bottomLeft.x) + "px";
         }
-      });
+        });
+        // Create a BasemapGallery widget instance and set
+        // its container to a div element
+
+        var basemapGallery = new BasemapGallery({
+            view: mainView,
+            container: document.createElement("div")
+        });
+
+        // Create an Expand instance and set the content
+        // property to the DOM node of the basemap gallery widget
+        // Use an Esri icon font to represent the content inside
+        // of the Expand widget
+
+        var bgExpand = new Expand({
+            view: mainView,
+            content: basemapGallery.domNode,
+            expandIconClass: "esri-icon-basemap"
+        });
+
+        // Add the expand instance to the ui
+
+        mainView.ui.add(bgExpand, "top-right");
+
+        on(dojo.query("#Demo_Area_Boluo"), "click", function() {
+            mainView.goTo({position: [114.19,23.0752,2000], heading: 0, tilt: 70});
+        });
+        on(dojo.query("#Demo_Area_Zhangjk"), "click", function() {
+            mainView.goTo({position: [114.93,40.7982,2000], heading: 0, tilt: 70});
+        });
+        on(dojo.query("#Demo_Area_Zhaoguang"), "click", function() {
+            mainView.goTo({position: [126.731,47.8572,10000], heading: 0, tilt: 70});
+        });
+        on(dojo.query("#Demo_Area_Xinjiang"), "click", function() {
+            mainView.goTo({position: [87.3060,43.8646,2000], heading: 0, tilt: 70});
+        });
+
+        on(dojo.query("#Demo_Area_Boluo_A"), "click", function() {
+            mainView.goTo({position: [114.1893,23.1258,1000], heading: 0, tilt: 0});
+        });
+        on(dojo.query("#Demo_Area_Boluo_B"), "click", function() {
+            mainView.goTo({position: [114.1914,23.11700,1000], heading: 0, tilt: 0});
+        });
+        on(dojo.query("#Demo_Area_Boluo_C"), "click", function() {
+            mainView.goTo({position: [114.2003,23.1243,1000], heading: 0, tilt: 0});
+        });
+
+        on(dojo.query("#Demo_Area_Zhangjk_A"), "click", function() {
+            mainView.goTo({position: [114.9277,40.827,2000], heading: 0, tilt: 0});
+        });
+
+        on(dojo.query("#Demo_Area_Zhaoguang_A"), "click", function() {
+            mainView.goTo({position: [126.8969,48.0806,4000], heading: 0, tilt: 0});
+        });
+        on(dojo.query("#Demo_Area_Zhaoguang_B"), "click", function() {
+            mainView.goTo({position: [126.4549,48.0502,4000], heading: 0, tilt: 0});
+        });
+
+        on(dojo.query("#Demo_Area_Xinjiang_A"), "click", function() {
+            mainView.goTo({position: [87.3060,43.9026,2000], heading: 0, tilt: 0});
+        });
+
+        istoGround = false;
+        on(dojo.query("#toGround"), "click", updateElevation);
+
+        function updateElevation(ev) {
+
+          // Turn ground layers visibility on/off
+          mainMap.ground.layers.forEach(function(layer) {
+            layer.visible = istoGround;
+              if(!istoGround){
+                  istoGround = true;
+              }else if(istoGround){
+                  istoGround = false;
+              }else{
+                  istoGround = undefined
+              }
+          });
+        }
+
     });
+
     </script>
 
 </head>
@@ -124,270 +209,13 @@
     <div id="nodisviewDiv">
     </div>
     <div id="NCviewDiv">
-        <img src="/static/img/soshinetechbg/bg-1.jpg" alt="NC" class="img-responsive">
+        <img id="hdimg" src="/static/img/alphapic/nc1.png" alt="NC">
     </div>
-    <div id="optionDiv">
-        <div id="optionBar" >
-            <div id="optionBar-name">
-                 <h3 class="Bar-name">图层列表 <small class="small-name">Layer List</small></h3>
-            </div>
-            <div class="optionToolBar">
-                <div id="Tool1" class="optionToolBlock">
-                    <span class="optionToolIcon glyphicon glyphicon-search"></span>
-                    <div class="optionToolLabel">Search</div>
-                </div>
-                <div id="Tool2" class="optionToolBlock">
-                    <span class="optionToolIcon glyphicon glyphicon-question-sign"></span>
-                    <div class="optionToolLabel">Help</div>
-                </div>
-                <div id="Tool3" class="optionToolBlock">
-                    <span class="optionToolIcon glyphicon glyphicon-list-alt"></span>
-                    <div class="optionToolLabel">Report</div>
-                </div>
-                <div id="Tool4" class="optionToolBlock">
-                    <span class="optionToolIcon glyphicon glyphicon-tags"></span>
-                    <div class="optionToolLabel">Tags</div>
-                </div>
-            </div>
-
-            <div class="panel-group" id="accordion">
-
-                <div class="panel-optionBar">
-                    <div class="panel-heading">
-                        <span id="NC_choose" class="check-box glyphicon glyphicon-unchecked" onclick="NC_onclick()"></span>
-                        NC
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-NC">
-                            <span class="glyphicon glyphicon-th-large" style="float: right"></span>
-                        </a>
-                    </div>
-                    <div id="collapseOption-NC" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="option-info">无人机航拍7cm分辨率可见光图像</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel-optionBar">
-                    <div class="panel-heading">
-                        <span id="CIR_choose" class="check-box glyphicon glyphicon-unchecked" onclick="CIR_onclick()"></span>
-                        CIR
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-CIR">
-                            <span class="glyphicon glyphicon-th-large" style="float: right"></span>
-                        </a>
-                    </div>
-                    <div id="collapseOption-CIR" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="option-info">伪彩色红外线图（Colored Infrared，缩写CIR）复合近红外光谱，红色和绿色波段。健康的植被有高水平的近红外，并显示红色。休眠的植被通常是绿色或褐色，而沙质土壤出现浅褐色和粘土暗褐色或蓝绿色的土壤。</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel-optionBar">
-                    <div class="panel-heading">
-                        <span id="NDVI_choose" class="check-box glyphicon glyphicon-unchecked" onclick="NDVI_onclick()"></span>
-                        NDVI
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-NDVI">
-                            <span class="glyphicon glyphicon-th-large" style="float: right"></span>
-                        </a>
-                    </div>
-                    <div id="collapseOption-NDVI" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="option-info">归一化植被覆盖指数（Normalized Difference Vegetation Index，缩写NDVI）对比从植物叶子反射的红光和近红外波段。应用于检测植被生长状态、植被覆盖度等。</div>
-                            <div id="slider-NDVI">
-                                <p>
-                                  <label for="amount">范围：</label>
-                                  <input type="text" id="amount" style="border:0; color:#f6931f; background-color:transparent; font-weight:bold;">
-                                </p>
-
-                                <div id="slider-range"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel-optionBar">
-                    <div class="panel-heading">
-                        <span id="Thermal_choose" class="check-box glyphicon glyphicon-unchecked" onclick="Thermal_onclick()"></span>
-                        Thermal
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-Thermal">
-                            <span class="glyphicon glyphicon-th-large" style="float: right"></span>
-                        </a>
-                    </div>
-                    <div id="collapseOption-Thermal" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="option-info">热成像（Thermal Image）是通过非接触探测红外能量（热量），并将其转换为可显示的图像。</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-optionBar">
-                    <div class="panel-heading">
-                        <span id="DSM_choose" class="check-box glyphicon glyphicon-unchecked" onclick="DSM_onclick()"></span>
-                        DSM
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOption-DSM">
-                            <span class="glyphicon glyphicon-th-large" style="float: right"></span>
-                        </a>
-                    </div>
-                    <div id="collapseOption-DSM" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="option-info">数字地表模型（Digital Surface Model，缩写DSM）是指在地形本身高程信息外，还包含地表建筑物、桥梁和树木等高度的地面高程模型。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div id="optionToggle" class="ToggleLogoleftArrow">
-
-        </div>
-    </div>
+    {% include 'OptionDiv.html' %}
     <div id="overviewDiv">
         <div id="extentDiv"></div>
     </div>
-    <div id="listDiv">
-        <div id="listBar">
-            <div id="listBar-name">
-                <h3 class="Bar-name">地块列表 <small class="small-name">Block List</small></h3>
-            </div>
-            <div id="blockInfo">
-                <h3 class="blockInfo-content" id="blocktitle">博罗县地块***</h3>
-                <div class="alert alert-info" id="blockInfo-status">
-                状态:正常
-                </div>
-                <table>
-                <tr>
-                  <td class="blockInfo-td" id="blockcordN">N:23.xxxxxx </td>
-                  <td class="blockInfo-td" id="blockcordS">S:23.yyyyyy </td>
-                </tr>
-                <tr>
-                  <td class="blockInfo-td" id="blockcordW">W:114.xxxxxx </td>
-                  <td class="blockInfo-td" id="blockcordE">E:114.yyyyyy </td>
-                </tr>
-                </table>
-
-                <h6 class="blockInfo-content" id="blockm2">面积:*****㎡</h6>
-                <h6 class="blockInfo-content" id="blockdate">日期:201x/xx/xx</h6>
-                <h6 class="blockInfo-content" id="blockproduct">作物:作物名</h6>
-                <p class="blockInfo-content" id="blockintro">
-                    无
-                </p>
-            </div>
-            <div class="panel-group blocklist" id="panel-blocklist">
-
-                <!--地块列表|博罗细1-9块-->
-                <div class="blocklist-heading">
-                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A')"></span>
-                    博罗县示例地块A
-                    <span class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-parent="#panel-blocklist"
-                          data-target="#panel-element-demo-Boluo-A" style="float: right" ></span>
-
-                </div>
-                <div id="panel-element-demo-Boluo-A" class="panel-collapse collapse">
-                    <div id="Demo_Block_Boluo_A_01" class="Blockname panel-body "
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','01')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','01')" style="cursor: pointer"></span>
-                        区域01|8水塘
-                    </div>
-                    <div id="Demo_Block_Boluo_A_02" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','02')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','02')" style="cursor: pointer"></span>
-                        区域02|1住宅+8水塘
-                    </div>
-                    <div id="Demo_Block_Boluo_A_03" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','03')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','03')" style="cursor: pointer"></span>
-                        区域03|4水塘
-                    </div>
-                    <div id="Demo_Block_Boluo_A_04" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','04')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','04')" style="cursor: pointer"></span>
-                        区域04|1住宅+10水塘
-                    </div>
-                    <div id="Demo_Block_Boluo_A_06" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','05')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','05')" style="cursor: pointer"></span>
-                        区域05|5干涸水塘+1水塘
-                    </div>
-                    <div id="Demo_Block_Boluo_A_06" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','06')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','06')" style="cursor: pointer"></span>
-                        区域06|1干涸水塘+3水塘
-                    </div>
-                    <div id="Demo_Block_Boluo_A_07" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','07')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','07')" style="cursor: pointer"></span>
-                        区域07|水塘夹角三角区农田
-                    </div>
-                    <div id="Demo_Block_Boluo_A_08" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','08')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','08')" style="cursor: pointer"></span>
-                        区域08|未灌溉农田
-                    </div>
-                    <div id="Demo_Block_Boluo_A_09" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','09')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','09')" style="cursor: pointer"></span>
-                        区域09|灌溉农田
-                    </div>
-                    <div id="Demo_Block_Boluo_A_10" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','A','10')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','A','10')" style="cursor: pointer"></span>
-                        区域10|2干涸水塘+8水塘
-                    </div>
-                </div>
-
-                <!--地块列表|博罗细2-3块-->
-                <div class="blocklist-heading">
-                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B')"></span>
-                    博罗县示例地块B
-                    <span class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-parent="#panel-blocklist"
-                          data-target="#panel-element-demo-Boluo-B" style="float: right" ></span>
-                </div>
-                <div id="panel-element-demo-Boluo-B" class="panel-collapse collapse">
-                    <div id="Demo_Block_Boluo_B_01" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','B','01')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B','01')" style="cursor: pointer"></span>
-                        区域01|北农田
-                    </div>
-                    <div id="Demo_Block_Boluo_B_02" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','B','02')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B','02')" style="cursor: pointer"></span>
-                        区域02|西农田
-                    </div>
-                    <div id="Demo_Block_Boluo_B_03" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','B','03')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','B','03')" style="cursor: pointer"></span>
-                        区域03|东农田
-                    </div>
-                </div>
-
-                <!--地块列表|博罗细3-4块-->
-                <div class="blocklist-heading">
-                    <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C')"></span>
-                    博罗县示例地块C
-                    <span class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-parent="#panel-blocklist"
-                          data-target="#panel-element-demo-Boluo-C" style="float: right"></span>
-                </div>
-                <div id="panel-element-demo-Boluo-C" class="panel-collapse collapse">
-                    <div id="Demo_Block_Boluo_C_01" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','C','03')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C','03')" style="cursor: pointer"></span>
-                        区域01|跨树林农田
-                    </div>
-                    <div id="Demo_Block_Boluo_C_02" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','C','03')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C','03')" style="cursor: pointer"></span>
-                        区域02|小块农田
-                    </div>
-                    <div id="Demo_Block_Boluo_C_03" class="Blockname panel-body"
-                         onmouseover="add_OutlineOverlay_Demo_Block('Boluo','C','03')" onmouseout="remove_OutlineOverlay()">
-                        <span class="glyphicon glyphicon-map-marker" onclick="focus_Demo_Block('Boluo','C','03')" style="cursor: pointer"></span>
-                        区域03|东农田
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="listToggle" class="ToggleLogorightArrow"></div>
-
-    </div>
+    {% include 'LIstDiv.html' %}
 
 </body>
 </html>

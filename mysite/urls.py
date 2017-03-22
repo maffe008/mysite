@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^marcgis/$', marcgis_views.index, name='marcgis'),
     url(r'^marcgis/demo/$', marcgis_views.demo, name='soshinesee'),
     url(r'^marcgis/alpha/$', marcgis_views.alpha, name='soshinesee_alpha'),
+    url(r'^marcgis/alpha_blockdata/$', marcgis_views.alpha_blockdata, name='soshinesee_alpha_blockdata'),
+    url(r'^marcgis/alpha_radius/$', marcgis_views.alpha_radius, name='soshinesee_alpha_radius'),
 
 
 ]

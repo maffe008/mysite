@@ -31,6 +31,8 @@
         "esri/views/SceneView",
         "esri/views/MapView",
         "esri/core/watchUtils",
+        "esri/widgets/Expand",
+        "esri/widgets/BasemapGallery",
 
         "dojo/dom",
         "dojo/query",
@@ -38,7 +40,7 @@
         "dojo/promise/all",
         "dojo/domReady!"
 
-    ], function InitMap(Map, SceneView, MapView, watchUtils, dom, query, on, all)
+    ], function (Map, SceneView, MapView, watchUtils, Expand, BasemapGallery, dom, query, on, all)
     {
 
         // Create a Map with a basemap, to be used with in the main view
@@ -118,6 +120,28 @@
             extentDiv.style.width = (topRight.x - bottomLeft.x) + "px";
         }
         });
+        // Create a BasemapGallery widget instance and set
+        // its container to a div element
+
+        var basemapGallery = new BasemapGallery({
+            view: mainView,
+            container: document.createElement("div")
+        });
+
+        // Create an Expand instance and set the content
+        // property to the DOM node of the basemap gallery widget
+        // Use an Esri icon font to represent the content inside
+        // of the Expand widget
+
+        var bgExpand = new Expand({
+            view: mainView,
+            content: basemapGallery.domNode,
+            expandIconClass: "esri-icon-basemap"
+        });
+
+        // Add the expand instance to the ui
+
+        mainView.ui.add(bgExpand, "top-right");
 
         on(dojo.query("#Demo_Area_Boluo"), "click", function() {
             mainView.goTo({position: [114.19,23.0752,2000], heading: 0, tilt: 70});
@@ -126,11 +150,55 @@
             mainView.goTo({position: [114.93,40.7982,2000], heading: 0, tilt: 70});
         });
         on(dojo.query("#Demo_Area_Zhaoguang"), "click", function() {
-            mainView.goTo({position: [126.731,47.9072,5000], heading: 0, tilt: 70});
+            mainView.goTo({position: [126.731,47.8572,10000], heading: 0, tilt: 70});
         });
         on(dojo.query("#Demo_Area_Xinjiang"), "click", function() {
             mainView.goTo({position: [87.3060,43.8646,2000], heading: 0, tilt: 70});
         });
+
+        on(dojo.query("#Demo_Area_Boluo_A"), "click", function() {
+            mainView.goTo({position: [114.1893,23.1258,1000], heading: 0, tilt: 0});
+        });
+        on(dojo.query("#Demo_Area_Boluo_B"), "click", function() {
+            mainView.goTo({position: [114.1914,23.11700,1000], heading: 0, tilt: 0});
+        });
+        on(dojo.query("#Demo_Area_Boluo_C"), "click", function() {
+            mainView.goTo({position: [114.2003,23.1243,1000], heading: 0, tilt: 0});
+        });
+
+        on(dojo.query("#Demo_Area_Zhangjk_A"), "click", function() {
+            mainView.goTo({position: [114.9277,40.827,2000], heading: 0, tilt: 0});
+        });
+
+        on(dojo.query("#Demo_Area_Zhaoguang_A"), "click", function() {
+            mainView.goTo({position: [126.8969,48.0806,4000], heading: 0, tilt: 0});
+        });
+        on(dojo.query("#Demo_Area_Zhaoguang_B"), "click", function() {
+            mainView.goTo({position: [126.4549,48.0502,4000], heading: 0, tilt: 0});
+        });
+
+        on(dojo.query("#Demo_Area_Xinjiang_A"), "click", function() {
+            mainView.goTo({position: [87.3060,43.9026,2000], heading: 0, tilt: 0});
+        });
+
+        istoGround = false;
+        on(dojo.query("#toGround"), "click", updateElevation);
+
+        function updateElevation(ev) {
+
+          // Turn ground layers visibility on/off
+          mainMap.ground.layers.forEach(function(layer) {
+            layer.visible = istoGround;
+              if(!istoGround){
+                  istoGround = true;
+              }else if(istoGround){
+                  istoGround = false;
+              }else{
+                  istoGround = undefined
+              }
+          });
+        }
+
     });
 
     </script>

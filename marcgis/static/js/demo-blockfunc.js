@@ -19,9 +19,6 @@ function Demo_focus_Comprt(area,block,comprt){
 
 function show_hd(hdimageurl,Bid) {
 
-    var hdimg = document.getElementById("hdimg");
-    hdimg.src = hdimageurl;
-
     switch (Bid) {
 
         case "A01":
@@ -156,4 +153,7 @@ function show_hd(hdimageurl,Bid) {
             break;
         default:
     }
+
+    var hdimg = document.getElementById("hdimg");
+    hdimg.src = hdimageurl;
 }

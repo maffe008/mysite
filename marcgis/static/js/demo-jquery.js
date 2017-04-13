@@ -9,15 +9,18 @@ $(document).ready(function(){
             //alert($(".esri-ui-corner").css("left"));
             $(".esri-ui-corner").css({"left":"0"});
             $("#overviewDiv").css({"left":"12px"});
+            $("#curcordDiv").css({"left":"12px"});
         }
         else {
             //alert($(".esri-ui-corner").css("left"));
             $(".esri-ui-corner").css({"left":"300px"});
             $("#overviewDiv").css({"left":"312px"});
+            $("#curcordDiv").css({"left":"312px"});
         }
 
     });
 });
+
 $(document).ready(function(){
     $("#listToggle").click(function(){
         $("#listBar").toggle();

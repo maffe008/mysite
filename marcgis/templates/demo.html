@@ -186,7 +186,7 @@
                var x = Math.round(evt.mapPoint.longitude * 10000)/10000;
                var y = Math.round(evt.mapPoint.latitude * 10000)/10000;
                var z = Math.round(evt.mapPoint.z * 100)/100;
-               document.getElementById("currentcord").innerHTML = x + ',' + y + ',' + z + 'm';
+               document.getElementById("curcordDiv").innerHTML = '鼠标单击位置：经纬度( ' + x + ', ' + y + ' ), 海拔' + z + 'm';
            }
         });
 
@@ -218,6 +218,9 @@
     <div id="viewDiv">
     </div>
     {% include 'OptionDiv.html' %}
+    <div id="curcordDiv">
+        <p>鼠标单击位置：经纬度( ---.----, ---.---- ), 海拔---.--m</p>
+    </div>
     <div id="overviewDiv">
         <div id="extentDiv"></div>
     </div>

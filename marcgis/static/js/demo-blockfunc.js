@@ -157,3 +157,4 @@ function show_hd(hdimageurl,Bid) {
     var hdimg = document.getElementById("hdimg");
     hdimg.src = hdimageurl;
 }
+

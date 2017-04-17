@@ -179,6 +179,12 @@
             popupTemplate: popupTemp_XJ
         });
 
+        // 1-4.Add the graphic to the view
+        mainView.graphics.add(pointGraphic_BL);
+        mainView.graphics.add(pointGraphic_ZJK);
+        mainView.graphics.add(pointGraphic_ZG);
+        mainView.graphics.add(pointGraphic_XJ);
+
         /*
             Area Outline
          */
@@ -202,7 +208,6 @@
         var A_lat2 = A_BL_N - A_lat_diff/3;
         var A_lat3 = A_BL_S + A_lat_diff/3;
         var A_lat4 = A_BL_S;
-        var block_BL_A = [[A_BL_W, A_BL_N],[A_BL_E, A_BL_N], [A_BL_E, A_BL_S],[A_BL_W, A_BL_S]];
         var p_BL_A =[
             [(A_lng2+A_lng3)/2,(A_lat2+A_lat3)/2],
             [A_lng1,A_lat1],[A_lng2,A_lat1],[A_lng3,A_lat1],[A_lng4,A_lat1],
@@ -210,6 +215,7 @@
             [A_lng4,A_lat2],[A_lng5,A_lat2],[A_lng1,A_lat3],[A_lng2,A_lat3],
             [A_lng3,A_lat3],[A_lng1,A_lat4],[A_lng2,A_lat4],[A_lng5,A_lat4]
         ];
+        var block_BL_A = [[A_lng1,A_lat1],[A_lng5,A_lat1] , [A_lng4,A_lat2],[A_lng3,A_lat2] ,[A_lng2,A_lat3] ,[A_lng1,A_lat4]]
         var Comprt_BL_A =[
             [p_BL_A[1],p_BL_A[2],p_BL_A[7],p_BL_A[6]],
             [p_BL_A[2],p_BL_A[3],p_BL_A[8],p_BL_A[7]],
@@ -230,13 +236,14 @@
         var B_lat2 = B_BL_N - B_lat_diff/3;
         var B_lat3 = B_BL_S + B_lat_diff/3;
         var B_lat4 = B_BL_S;
-        var block_BL_B = [[B_BL_W, B_BL_N],[B_BL_E, B_BL_N], [B_BL_E, B_BL_S],[B_BL_W, B_BL_S]];
+
 		var p_BL_B =[
 			[],
 			[B_lng1,B_lat1],[B_lng2,B_lat1],[B_lng3,B_lat1],[B_lng1,B_lat2],
 			[B_lng2,B_lat2],[B_lng3,B_lat2],[B_lng1,B_lat3],[B_lng2,B_lat3],
 			[B_lng3,B_lat3],[B_lng1,B_lat4],[B_lng2,B_lat4],[B_lng3,B_lat4]
 		];
+        var block_BL_B = [[B_lng1,B_lat2],[B_lng2,B_lat2],[B_lng2,B_lat1],[B_lng3,B_lat1],[B_lng3,B_lat4],[B_lng1,B_lat4]];
 		var Comprt_BL_B =[
 			[p_BL_B[2],p_BL_B[3],p_BL_B[6],p_BL_B[5]],
 			[p_BL_B[4],p_BL_B[5],p_BL_B[8],p_BL_B[7]],
@@ -244,6 +251,7 @@
 			[p_BL_B[7],p_BL_B[8],p_BL_B[11],p_BL_B[10]],
 			[p_BL_B[8],p_BL_B[9],p_BL_B[12],p_BL_B[11]]
 		];
+
 
         var C_BL_W = 114.19444,C_BL_E = 114.1969,C_BL_N = 23.12557 ,C_BL_S = 23.12121;
         var C_lng1 = C_BL_W;
@@ -272,9 +280,11 @@
         var p_ZJK_A =[
             [126.8969, 48.0806 ],//marker coordinate
             [114.9272, 40.82804],[114.92915, 40.82825],[ 114.92839, 40.82753 ],[ 114.92603, 40.8269],//4
-            [ 114.93104, 40.82845],[114.92908, 40.82599],[114.92571, 40.82519],[114.929, 40.82898],//8
+            [114.93104, 40.82845],[114.92908, 40.82599],[114.92571, 40.82519],[114.929, 40.82898],//8
             [114.93463, 40.82889],[114.9324, 40.828]
         ];
+        var block_ZJK_A = [ [114.9272, 40.82804],[114.92915, 40.82825],[114.929, 40.82898],[114.93463, 40.82889],
+            [114.9324, 40.828],[114.93104, 40.82845],[114.92908, 40.82599],[114.92571, 40.82519],[ 114.92603, 40.8269]];
         var Comprt_ZJK_A = [
             [p_ZJK_A[8],p_ZJK_A[9],p_ZJK_A[10],p_ZJK_A[5],p_ZJK_A[2]],
 			[p_ZJK_A[2],p_ZJK_A[5],p_ZJK_A[10],p_ZJK_A[6],p_ZJK_A[3]],
@@ -322,12 +332,8 @@
 
         var polygon = new Polygon({
             rings: [
-
-                block_BL_A,
                 Comprt_BL_A[0],Comprt_BL_A[1],Comprt_BL_A[2],Comprt_BL_A[3],Comprt_BL_A[4],Comprt_BL_A[5],Comprt_BL_A[6],
-                block_BL_B,
                 Comprt_BL_B[0],Comprt_BL_B[1],Comprt_BL_B[2],Comprt_BL_B[3],Comprt_BL_B[4],
-                block_BL_C,
                 Comprt_BL_C[0],Comprt_BL_C[1],Comprt_BL_C[2],
                 Comprt_ZJK_A[0],Comprt_ZJK_A[1],Comprt_ZJK_A[2],Comprt_ZJK_A[3],
                 Comprt_ZG_A[0],Comprt_ZG_A[1],Comprt_ZG_A[2],Comprt_ZG_A[3],Comprt_ZG_A[4],
@@ -335,52 +341,100 @@
                 Comprt_XJ_A[0],Comprt_XJ_A[1],Comprt_XJ_A[2]
             ]
         });
+
         // 3-2.Create a symbol for rendering the graphic
-        var fillSymbol = new SimpleFillSymbol({
-            color: [227, 39, 39, 0.2],
-            outline: {
-                color: [255, 255, 255],
-                width: 1
-            }
-        });
         // 3-3.Add the geometry and symbol to a new graphic
-        var polygonGraphic = new Graphic({
-            geometry: polygon,
-            symbol: fillSymbol
-        });
-
-
-
-
-        var polygon_areas = new Polygon({
-            rings: [
-                area_BL, area_ZJK,area_ZG,area_XJ
-            ]
-        });
-        var fillSymbol_areas = new SimpleFillSymbol({
-            color: [39, 39, 227, 0.2],
-            outline: {
-                color: [255, 255, 255],
-                width: 1
-            }
-        });
-        var polygonGraphic_areas = new Graphic({
-            geometry: polygon_areas,
-            symbol: fillSymbol_areas
-        });
-
-
-        // 1-4.Add the graphic to the view
-        mainView.graphics.add(pointGraphic_BL);
-        mainView.graphics.add(pointGraphic_ZJK);
-        mainView.graphics.add(pointGraphic_ZG);
-        mainView.graphics.add(pointGraphic_XJ);
 
         // 3-4.Add the graphic to the view
-        mainView.graphics.add(polygonGraphic);
-        mainView.graphics.add(polygonGraphic_areas);
+        function add_polygon_area(cur_area){
+            var fillSymbol_area = new SimpleFillSymbol({
+                color: [255, 127, 36, 0.5],
+                outline: {
+                    color: [255, 255, 255],
+                    width: 1
+                }
+            });
+            var temp_polygon_area = new Polygon({
+                rings: [cur_area]
+            });
+            var temp_polygonGraphic_area = new Graphic({
+                geometry: temp_polygon_area,
+                symbol: fillSymbol_area
+            });
+            mainView.graphics.removeAll();
+            mainView.graphics.add(temp_polygonGraphic_area);
+        }
 
+        function add_polygon_block(cur_block){
+            var fillSymbol_block = new SimpleFillSymbol({
+                color: [0, 191, 255, 0.2],
+                outline: {
+                    color: [65, 105, 225],
+                    width: 2
+                }
+            });
+            var temp_polygon_block = new Polygon({
+                rings: [cur_block]
+            });
+            var temp_polygonGraphic_block = new Graphic({
+                geometry: temp_polygon_block,
+                symbol: fillSymbol_block
+            });
+            mainView.graphics.removeAll();
+            mainView.graphics.add(temp_polygonGraphic_block);
+        }
+        function add_polygon_block_nocolor(cur_block){
+            var fillSymbol_block = new SimpleFillSymbol({
+                color: [0, 0, 0, 0],
+                outline: {
+                    color: [65, 105, 225],
+                    width: 2
+                }
+            });
+            var temp_polygon_block = new Polygon({
+                rings: [cur_block]
+            });
+            var temp_polygonGraphic_block = new Graphic({
+                geometry: temp_polygon_block,
+                symbol: fillSymbol_block
+            });
+            mainView.graphics.removeAll();
+            mainView.graphics.add(temp_polygonGraphic_block);
+        }
+        function add_polygon_comprt(cur_block,cur_comprt){
+            var fillSymbol_comprt = new SimpleFillSymbol({
+                color: [0, 255, 127, 0.2],
+                outline: {
+                    color: [0, 255, 127],
+                    width: 1
+                }
+            });
+            var fillSymbol_block = new SimpleFillSymbol({
+                color: [0, 0, 0, 0],
+                outline: {
+                    color: [65, 105, 225],
+                    width: 2
+                }
+            });
+            var temp_polygon_comprt = new Polygon({
+                rings: [cur_comprt]
+            });
+            var temp_polygon_block = new Polygon({
+                rings: [cur_block]
+            });
 
+            var temp_polygonGraphic_comprt = new Graphic({
+                geometry: temp_polygon_comprt,
+                symbol: fillSymbol_comprt
+            });
+            var temp_polygonGraphic_block = new Graphic({
+                geometry: temp_polygon_block,
+                symbol: fillSymbol_block
+            });
+            mainView.graphics.removeAll();
+            mainView.graphics.add(temp_polygonGraphic_block);
+            mainView.graphics.add(temp_polygonGraphic_comprt);
+        }
 
 
         mainView.then(function() {
@@ -458,30 +512,112 @@
 
         on(dojo.query("#Demo_Area_Boluo"), "click", function() {
             mainView.goTo({position: [114.197,23.0752,2000], heading: 0, tilt: 70});
+            add_polygon_area(area_BL);
         });
         on(dojo.query("#Demo_Area_Zhangjk"), "click", function() {
             mainView.goTo({position: [114.92863,40.7802,2000], heading: 0, tilt: 70});
+            add_polygon_area(area_ZJK);
         });
         on(dojo.query("#Demo_Area_Zhaoguang"), "click", function() {
             mainView.goTo({position: [126.927,46.4672,50000], heading: 0, tilt: 70});
+            add_polygon_area(area_ZG);
         });
         on(dojo.query("#Demo_Area_Xinjiang"), "click", function() {
             mainView.goTo({position: [87.3060,43.8646,2000], heading: 0, tilt: 70});
+            add_polygon_area(area_XJ);
         });
 
 		on(dojo.query("#Demo_Area_Boluo_A"), "click", function() {
-            mainView.goTo({position: [114.19452, 23.12866,1000], heading: 0, tilt: 0});
+            mainView.goTo({position: [114.19452, 23.12866,1500], heading: 0, tilt: 0});
+            add_polygon_block(block_BL_A);
         });
         on(dojo.query("#Demo_Area_Boluo_B"), "click", function() {
-            mainView.goTo({position: [ 114.19575, 23.12343,1000], heading: 0, tilt: 0});
+            mainView.goTo({position: [114.20026, 23.12347,1500], heading: 0, tilt: 0});
+            add_polygon_block(block_BL_B);
         });
         on(dojo.query("#Demo_Area_Boluo_C"), "click", function() {
-            mainView.goTo({position: [114.20026, 23.12347,1000], heading: 0, tilt: 0});
+            mainView.goTo({position: [114.19575, 23.12343,1500], heading: 0, tilt: 0});
+            add_polygon_block(block_BL_C);
+        });
+		on(dojo.query("#Demo_Area_Boluo_A_outline"), "click", function() {
+            add_polygon_block_nocolor(block_BL_A);
+        });
+        on(dojo.query("#Demo_Area_Boluo_B_outline"), "click", function() {
+            add_polygon_block_nocolor(block_BL_B);
+        });
+        on(dojo.query("#Demo_Area_Boluo_C_outline"), "click", function() {
+            add_polygon_block_nocolor(block_BL_C);
         });
 
+        on(dojo.query("#Demo_Comprt_Boluo_A_01_loc"), "click", function() {
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[0]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_A_02_loc"), "click", function() {
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[1]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_A_03_loc"), "click", function() {
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[2]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_A_04_loc"), "click", function() {
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[3]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_A_05_loc"), "click", function() {
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[4]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_A_06_loc"), "click", function() {
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[5]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_A_07_loc"), "click", function() {
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[6]);
+        });
+
+        on(dojo.query("#Demo_Comprt_Boluo_B_01_loc"), "click", function() {
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[0]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_B_02_loc"), "click", function() {
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[1]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_B_03_loc"), "click", function() {
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[2]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_B_04_loc"), "click", function() {
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[3]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_B_05_loc"), "click", function() {
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[4]);
+        });
+
+        on(dojo.query("#Demo_Comprt_Boluo_C_01_loc"), "click", function() {
+            add_polygon_comprt(block_BL_C,Comprt_BL_C[0]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_C_02_loc"), "click", function() {
+            add_polygon_comprt(block_BL_C,Comprt_BL_C[1]);
+        });
+        on(dojo.query("#Demo_Comprt_Boluo_C_03_loc"), "click", function() {
+            add_polygon_comprt(block_BL_C,Comprt_BL_C[2]);
+        });
+
+        //add_polygon_block
         on(dojo.query("#Demo_Area_Zhangjk_A"), "click", function() {
             mainView.goTo({position: [114.92974, 40.82734,2000], heading: 0, tilt: 0});
+            add_polygon_block(block_ZJK_A);
         });
+		on(dojo.query("#Demo_Area_Zhangjk_A_outline"), "click", function() {
+            add_polygon_block_nocolor(block_ZJK_A);
+        });
+        on(dojo.query("#Demo_Comprt_Zhangjk_A_01_loc"), "click", function() {
+            add_polygon_comprt(block_ZJK_A,Comprt_ZJK_A[0]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhangjk_A_02_loc"), "click", function() {
+            add_polygon_comprt(block_ZJK_A,Comprt_ZJK_A[1]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhangjk_A_03_loc"), "click", function() {
+            add_polygon_comprt(block_ZJK_A,Comprt_ZJK_A[2]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhangjk_A_04_loc"), "click", function() {
+            add_polygon_comprt(block_ZJK_A,Comprt_ZJK_A[3]);
+        });
+
 
         on(dojo.query("#Demo_Area_Zhaoguang_A"), "click", function() {
             mainView.goTo({position: [126.89554, 48.0807,4000], heading: 0, tilt: 0});

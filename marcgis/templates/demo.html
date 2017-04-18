@@ -39,6 +39,10 @@
         "esri/geometry/Polygon",
         "esri/symbols/SimpleFillSymbol",
 
+        "esri/symbols/PointSymbol3D",
+        "esri/symbols/ObjectSymbol3DLayer",
+        "esri/symbols/WebStyleSymbol",
+
         "esri/core/watchUtils",
         "esri/widgets/Expand",
         "esri/widgets/BasemapGallery",
@@ -51,6 +55,7 @@
 
     ], function (Map, SceneView, MapView,
                  Graphic, Point, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol,
+                 PointSymbol3D,ObjectSymbol3DLayer,WebStyleSymbol,
                  watchUtils, Expand, BasemapGallery,
                  dom, query, on, all)
     {
@@ -106,6 +111,72 @@
                 width: 1
             }
         });
+
+        /*
+        *
+        *
+        *
+        *
+        * */
+        var webStyleSymbol_tree = new WebStyleSymbol({
+            name: "Phoenix",
+            portal: {
+            url: "https://www.arcgis.com"
+            },
+            styleName: "EsriRealisticTreesStyle"
+        });
+        var webStyleSymbol_illtree = new WebStyleSymbol({
+            name: "Other",
+            portal: {
+            url: "https://www.arcgis.com"
+            },
+            styleName: "EsriRealisticTreesStyle"
+        });
+
+        function add_ill_tree(lng,lat){
+            var tp = new Point({longitude: lng, latitude: lat});
+            var webStyleSymbol_ill = new WebStyleSymbol({
+                name: "Other",
+                portal: {
+                url: "https://www.arcgis.com"
+                },
+                styleName: "EsriRealisticTreesStyle"
+            });
+            var sur = Math.round(Math.random()*3000)/100;
+            var attr_tree = {
+                lng: lng,
+                lat: lat,
+                survive: sur
+            };
+            // Create pop-up template
+            var popupTemp_tree = {
+                title: "病树位置",
+                content: "<h5>经度：<b>{lng}</b></h5>" +
+                "<h5>纬度：<b>{lat}</b></h5>" +
+                "<h5>存活概率：<b>{survive}%</b></h5>"
+            };
+            var ptGra = new Graphic({
+                geometry: tp,
+                symbol: webStyleSymbol_ill,
+                attributes: attr_tree,
+                popupTemplate: popupTemp_tree
+            });
+            mainView.graphics.add(ptGra);
+
+        }
+
+
+        var symbol = new PointSymbol3D({
+            symbolLayers: [new ObjectSymbol3DLayer({
+                width: 5,  // diameter of the object from east to west in meters
+                height: 20,  // height of the object in meters
+                depth: 15,  // diameter of the object from north to south in meters
+                resource: { primitive: "cylinder" },
+                material: { color: "red" }
+            })]
+        });
+
+
         // Create attributes
         var attr_BL = {
             Area: "博罗县罗阳镇",
@@ -215,7 +286,7 @@
             [A_lng4,A_lat2],[A_lng5,A_lat2],[A_lng1,A_lat3],[A_lng2,A_lat3],
             [A_lng3,A_lat3],[A_lng1,A_lat4],[A_lng2,A_lat4],[A_lng5,A_lat4]
         ];
-        var block_BL_A = [[A_lng1,A_lat1],[A_lng5,A_lat1] , [A_lng4,A_lat2],[A_lng3,A_lat2] ,[A_lng2,A_lat3] ,[A_lng1,A_lat4]]
+        var block_BL_A = [[A_lng1,A_lat1],[A_lng5,A_lat1] , [A_lng4,A_lat2],[A_lng3,A_lat2] ,[A_lng2,A_lat3] ,[A_lng1,A_lat4]];
         var Comprt_BL_A =[
             [p_BL_A[1],p_BL_A[2],p_BL_A[7],p_BL_A[6]],
             [p_BL_A[2],p_BL_A[3],p_BL_A[8],p_BL_A[7]],
@@ -300,6 +371,8 @@
             [126.8867, 48.08545],[126.88931, 48.08438],[126.89092, 48.08386],[126.88134, 48.07228],//12
             [126.90848, 48.07911],[126.88794, 48.08742]//14
         ];
+        var block_ZG_A = [p_ZG_A[1],p_ZG_A[2],p_ZG_A[3],p_ZG_A[13],p_ZG_A[4],p_ZG_A[5],p_ZG_A[6],
+            p_ZG_A[7],p_ZG_A[12],p_ZG_A[8],p_ZG_A[10],p_ZG_A[9],p_ZG_A[14]];
         var Comprt_ZG_A = [
             [p_ZG_A[1],p_ZG_A[2],p_ZG_A[11],p_ZG_A[10],p_ZG_A[9],p_ZG_A[14]],
             [p_ZG_A[2],p_ZG_A[3],p_ZG_A[13],p_ZG_A[4],p_ZG_A[11]],
@@ -312,6 +385,7 @@
             [ 126.44237, 48.04807],[ 126.44554, 48.0487],[126.45015, 48.0501 ],[ 126.45559, 48.05147 ],//4
             [ 126.44235, 48.04651],[ 126.44607, 48.04612],[126.45114, 48.04537],[126.45737, 48.04428]
         ];
+        var block_ZG_B = [p_ZG_B[1],p_ZG_B[2],p_ZG_B[3],p_ZG_B[4],p_ZG_B[8],p_ZG_B[7],p_ZG_B[6],p_ZG_B[5]];
         var Comprt_ZG_B = [
             [p_ZG_B[1],p_ZG_B[2],p_ZG_B[6],p_ZG_B[5]],
             [p_ZG_B[2],p_ZG_B[3],p_ZG_B[7],p_ZG_B[6]],
@@ -324,23 +398,14 @@
             [87.30196, 43.90481],[87.30434, 43.90483],[87.3019, 43.90048],[87.30982, 43.904251],//4
             [87.31095, 43.90375],[87.30879, 43.8999],[87.31384, 43.90316],[87.3119, 43.8996],[ 87.30158, 43.90432]
         ];
+        var block_XJ_A = [p_XJ_A[1],p_XJ_A[2],p_XJ_A[4],p_XJ_A[5],p_XJ_A[7],p_XJ_A[8],p_XJ_A[6],p_XJ_A[3],p_XJ_A[9]];
         var Comprt_XJ_A = [
             [p_XJ_A[1],p_XJ_A[2],p_XJ_A[3],p_XJ_A[9]],
             [p_XJ_A[2],p_XJ_A[4],p_XJ_A[5],p_XJ_A[6],p_XJ_A[3]],
             [p_XJ_A[5],p_XJ_A[7],p_XJ_A[8],p_XJ_A[6]]
         ];
 
-        var polygon = new Polygon({
-            rings: [
-                Comprt_BL_A[0],Comprt_BL_A[1],Comprt_BL_A[2],Comprt_BL_A[3],Comprt_BL_A[4],Comprt_BL_A[5],Comprt_BL_A[6],
-                Comprt_BL_B[0],Comprt_BL_B[1],Comprt_BL_B[2],Comprt_BL_B[3],Comprt_BL_B[4],
-                Comprt_BL_C[0],Comprt_BL_C[1],Comprt_BL_C[2],
-                Comprt_ZJK_A[0],Comprt_ZJK_A[1],Comprt_ZJK_A[2],Comprt_ZJK_A[3],
-                Comprt_ZG_A[0],Comprt_ZG_A[1],Comprt_ZG_A[2],Comprt_ZG_A[3],Comprt_ZG_A[4],
-                Comprt_ZG_B[0],Comprt_ZG_B[1],Comprt_ZG_B[2],
-                Comprt_XJ_A[0],Comprt_XJ_A[1],Comprt_XJ_A[2]
-            ]
-        });
+
 
         // 3-2.Create a symbol for rendering the graphic
         // 3-3.Add the geometry and symbol to a new graphic
@@ -401,7 +466,7 @@
             mainView.graphics.removeAll();
             mainView.graphics.add(temp_polygonGraphic_block);
         }
-        function add_polygon_comprt(cur_block,cur_comprt){
+        function add_polygon_comprt(cur_block,cur_comprt,area,block,comprt){
             var fillSymbol_comprt = new SimpleFillSymbol({
                 color: [0, 255, 127, 0.2],
                 outline: {
@@ -422,10 +487,31 @@
             var temp_polygon_block = new Polygon({
                 rings: [cur_block]
             });
+            var trees = Math.round(Math.random()*1000)+1500;
+            var ill_trees = Math.round(Math.random()*100);
+            var pertemp = Math.round((ill_trees/trees)*100)/100;
+            var attr_Comprt = {
+                Area: area,
+                Block: block,
+                Comprt: comprt,
+                Tree_name: "棕榈树",
+                Tree_count: trees,
+                Ill_Tree_count: ill_trees,
+                ILL_percent: pertemp+"%"
+            };
 
+            var popupTemp_Comprt = {
+                title: "{Area}地块{Block}区域{Comprt}",
+                content: "<h5>树种：{Tree_name}</h5>" +
+                "<h5>总数：{Tree_count}</h5>" +
+                "<h5>病数：{Ill_Tree_count}</h5>" +
+                "<h5>比例：{ILL_percent}</h5>"
+            };
             var temp_polygonGraphic_comprt = new Graphic({
                 geometry: temp_polygon_comprt,
-                symbol: fillSymbol_comprt
+                symbol: fillSymbol_comprt,
+                attributes: attr_Comprt,
+                popupTemplate: popupTemp_Comprt
             });
             var temp_polygonGraphic_block = new Graphic({
                 geometry: temp_polygon_block,
@@ -550,51 +636,89 @@
         });
 
         on(dojo.query("#Demo_Comprt_Boluo_A_01_loc"), "click", function() {
-            add_polygon_comprt(block_BL_A,Comprt_BL_A[0]);
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[0],"博罗县罗阳镇","A","01");
+            add_ill_tree(114.19243, 23.12973);
+            add_ill_tree(114.19294, 23.12972);
+            add_ill_tree(114.19349, 23.13043);
         });
         on(dojo.query("#Demo_Comprt_Boluo_A_02_loc"), "click", function() {
-            add_polygon_comprt(block_BL_A,Comprt_BL_A[1]);
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[1],"博罗县罗阳镇","A","02");
+            add_ill_tree(114.19428,  23.12964);
+            add_ill_tree(114.19405,  23.13031);
         });
         on(dojo.query("#Demo_Comprt_Boluo_A_03_loc"), "click", function() {
-            add_polygon_comprt(block_BL_A,Comprt_BL_A[2]);
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[2],"博罗县罗阳镇","A","03");
+			add_ill_tree(114.19585,  23.13047);
+			add_ill_tree(114.19656,  23.13022);
+			add_ill_tree(114.19612,  23.12977);
         });
         on(dojo.query("#Demo_Comprt_Boluo_A_04_loc"), "click", function() {
-            add_polygon_comprt(block_BL_A,Comprt_BL_A[3]);
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[3],"博罗县罗阳镇","A","04");
+			add_ill_tree(114.19735,  23.13074);
         });
         on(dojo.query("#Demo_Comprt_Boluo_A_05_loc"), "click", function() {
-            add_polygon_comprt(block_BL_A,Comprt_BL_A[4]);
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[4],"博罗县罗阳镇","A","05");
+			add_ill_tree(114.19344,  23.12913);
+			add_ill_tree(114.19253,  23.12913);
+			add_ill_tree(114.19277,  23.12864);
+			add_ill_tree(114.19324,  23.12834);
+			add_ill_tree(114.19217,  23.12826);
+			add_ill_tree(114.19354,  23.12935)
         });
         on(dojo.query("#Demo_Comprt_Boluo_A_06_loc"), "click", function() {
-            add_polygon_comprt(block_BL_A,Comprt_BL_A[5]);
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[5],"博罗县罗阳镇","A","06");
+			add_ill_tree(114.19468,  23.12914);
+			add_ill_tree(114.19388,  23.12919);
         });
         on(dojo.query("#Demo_Comprt_Boluo_A_07_loc"), "click", function() {
-            add_polygon_comprt(block_BL_A,Comprt_BL_A[6]);
+            add_polygon_comprt(block_BL_A,Comprt_BL_A[6],"博罗县罗阳镇","A","07");
+			add_ill_tree(114.19211,  23.12766);
+			add_ill_tree(114.19272,  23.1274);
+			add_ill_tree(114.19217,  23.12694);
         });
 
         on(dojo.query("#Demo_Comprt_Boluo_B_01_loc"), "click", function() {
-            add_polygon_comprt(block_BL_B,Comprt_BL_B[0]);
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[0],"博罗县罗阳镇","B","01");
+            add_ill_tree(114.2011, 23.12543);
+            add_ill_tree( 114.20189, 23.12455);
         });
         on(dojo.query("#Demo_Comprt_Boluo_B_02_loc"), "click", function() {
-            add_polygon_comprt(block_BL_B,Comprt_BL_B[1]);
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[1],"博罗县罗阳镇","B","02");
+            add_ill_tree(114.19921, 23.12353 );
+            add_ill_tree(114.1995, 23.12318);
         });
         on(dojo.query("#Demo_Comprt_Boluo_B_03_loc"), "click", function() {
-            add_polygon_comprt(block_BL_B,Comprt_BL_B[2]);
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[2],"博罗县罗阳镇","B","03");
+            add_ill_tree(114.20127, 23.12309);
         });
         on(dojo.query("#Demo_Comprt_Boluo_B_04_loc"), "click", function() {
-            add_polygon_comprt(block_BL_B,Comprt_BL_B[3]);
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[3],"博罗县罗阳镇","B","04");
+            add_ill_tree(114.19909, 23.1221);
+            add_ill_tree(114.1993, 23.12213);
+            add_ill_tree( 114.19942, 23.12189);
+            add_ill_tree(114.19937, 23.12167 );
+            add_ill_tree(114.19983, 23.12165);
         });
         on(dojo.query("#Demo_Comprt_Boluo_B_05_loc"), "click", function() {
-            add_polygon_comprt(block_BL_B,Comprt_BL_B[4]);
+            add_polygon_comprt(block_BL_B,Comprt_BL_B[4],"博罗县罗阳镇","B","05");
+
+            add_ill_tree(114.20145, 23.12204);
         });
 
         on(dojo.query("#Demo_Comprt_Boluo_C_01_loc"), "click", function() {
-            add_polygon_comprt(block_BL_C,Comprt_BL_C[0]);
+            add_polygon_comprt(block_BL_C,Comprt_BL_C[0],"博罗县罗阳镇","C","01");
+            add_ill_tree( 114.19511, 23.12484 );
+            add_ill_tree(114.1956, 23.12524);
         });
         on(dojo.query("#Demo_Comprt_Boluo_C_02_loc"), "click", function() {
-            add_polygon_comprt(block_BL_C,Comprt_BL_C[1]);
+            add_polygon_comprt(block_BL_C,Comprt_BL_C[1],"博罗县罗阳镇","C","02");
+            add_ill_tree(114.19605, 23.12344);
+            add_ill_tree(114.19626, 23.1234);
+            add_ill_tree(114.19649, 23.1233);
         });
         on(dojo.query("#Demo_Comprt_Boluo_C_03_loc"), "click", function() {
-            add_polygon_comprt(block_BL_C,Comprt_BL_C[2]);
+            add_polygon_comprt(block_BL_C,Comprt_BL_C[2],"博罗县罗阳镇","C","03");
+            add_ill_tree(114.19534, 23.122180);
         });
 
         //add_polygon_block
@@ -620,14 +744,60 @@
 
 
         on(dojo.query("#Demo_Area_Zhaoguang_A"), "click", function() {
+            add_polygon_block(block_ZG_A);
             mainView.goTo({position: [126.89554, 48.0807,4000], heading: 0, tilt: 0});
         });
+		on(dojo.query("#Demo_Area_Zhaoguang_A_outline"), "click", function() {
+            add_polygon_block_nocolor(block_ZG_A);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_A_01_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_A,Comprt_ZG_A[0]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_A_02_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_A,Comprt_ZG_A[1]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_A_03_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_A,Comprt_ZG_A[2]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_A_04_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_A,Comprt_ZG_A[3]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_A_05_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_A,Comprt_ZG_A[4]);
+        });
+
         on(dojo.query("#Demo_Area_Zhaoguang_B"), "click", function() {
+            add_polygon_block(block_ZG_B);
             mainView.goTo({position: [126.45159, 48.04779,4000], heading: 0, tilt: 0});
+        });
+		on(dojo.query("#Demo_Area_Zhaoguang_B_outline"), "click", function() {
+            add_polygon_block_nocolor(block_ZG_B);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_B_01_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_B,Comprt_ZG_B[0]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_B_02_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_B,Comprt_ZG_B[1]);
+        });
+        on(dojo.query("#Demo_Comprt_Zhaoguang_B_03_loc"), "click", function() {
+            add_polygon_comprt(block_ZG_B,Comprt_ZG_B[2]);
         });
 
         on(dojo.query("#Demo_Area_Xinjiang_A"), "click", function() {
+            add_polygon_block(block_XJ_A);
             mainView.goTo({position: [87.3060,43.9026,2000], heading: 0, tilt: 0});
+        });
+		on(dojo.query("#Demo_Area_Xinjiang_A_outline"), "click", function() {
+            add_polygon_block_nocolor(block_XJ_A);
+        });
+        on(dojo.query("#Demo_Comprt_Xinjiang_A_01_loc"), "click", function() {
+            add_polygon_comprt(block_XJ_A,Comprt_XJ_A[0]);
+        });
+        on(dojo.query("#Demo_Comprt_Xinjiang_A_02_loc"), "click", function() {
+            add_polygon_comprt(block_XJ_A,Comprt_XJ_A[1]);
+        });
+        on(dojo.query("#Demo_Comprt_Xinjiang_A_03_loc"), "click", function() {
+            add_polygon_comprt(block_XJ_A,Comprt_XJ_A[2]);
         });
 
         mainView.on('click', function(evt){

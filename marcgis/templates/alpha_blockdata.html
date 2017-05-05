@@ -69,7 +69,9 @@
                 places: 0,
                 digitSeparator: true
               }
-            }, {
+            },
+            //
+            {
               fieldName: "relationships/0/Point_Count_COMMON",
               visible: true,
               label: "Sum of species tree count",
@@ -78,15 +80,18 @@
                 digitSeparator: true
               },
               statisticType: "sum"
-            }, {
+            },
+            {
               fieldName: "relationships/0/COMMON",
               visible: false,
               label: "Common Name"
-            }, {
+            },
+            {
               fieldName: "BLOCKCE10",
               visible: true,
               label: "Block"
-            }]
+            }
+            ]
           }, {
             // You can also set a descriptive text element. This element
             // uses an attribute from the featurelayer which displays a
@@ -94,7 +99,8 @@
             // specified census block. Text elements can only be set within the content.
             type: "text",
             text: "There are {Point_Count} trees within census block {BLOCKCE10}"
-          }, {
+          },
+          {
             // You can set a media element within the popup as well. This
             // can be either an image or a chart. You specify this within
             // the mediaInfos. The following creates a pie chart in addition
@@ -124,7 +130,8 @@
                 sourceURL: "https://cdn.loc.gov/service/pnp/highsm/21600/21679r.jpg"
               }
             }]
-          }, {
+          },
+          {
             // You can set a attachment element(s) within the popup as well.
             // Similar to text and media elements, attachments can only be set
             // within the content. Any attachmentInfos associated with the feature

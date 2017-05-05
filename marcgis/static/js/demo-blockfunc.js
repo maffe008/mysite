@@ -17,7 +17,7 @@ function Demo_focus_Comprt(area,block,comprt){
 }
 
 
-function show_hd(hdimageurl,Bid) {
+function show_comprt_info(Bid) {
 
     switch (Bid) {
 
@@ -25,9 +25,9 @@ function show_hd(hdimageurl,Bid) {
             document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇A01";
             document.getElementById("comprtInfo-status").className = "alert alert-info";
             document.getElementById("comprtInfo-status").innerHTML = "正常";
-            document.getElementById("blockcordN").innerHTML = "N:23.129632";
+            document.getElementById("blockcordN").innerHTML = "N:23.13087";
             document.getElementById("blockcordS").innerHTML = "S:23.127825";
-            document.getElementById("blockcordW").innerHTML = "W:114.203604";
+            document.getElementById("blockcordW").innerHTML = "W:114.19187";
             document.getElementById("blockcordE").innerHTML = "E:114.205437";
             document.getElementById("blockm2").innerHTML = "面积:22388㎡";
             document.getElementById("blockdate").innerHTML = "日期:2016/03/15";
@@ -60,8 +60,8 @@ function show_hd(hdimageurl,Bid) {
             document.getElementById("blockproduct").innerHTML = "作物:树木";
             document.getElementById("blockintro").innerHTML = "信息:无";
             break;
-        case "A07":
-            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇A07";
+        case "A04":
+            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇A04";
             document.getElementById("comprtInfo-status").className = "alert alert-info";
             document.getElementById("comprtInfo-status").innerHTML = "正常";
             document.getElementById("blockcordN").innerHTML = "N:23.132257";
@@ -73,8 +73,34 @@ function show_hd(hdimageurl,Bid) {
             document.getElementById("blockproduct").innerHTML = "作物:树木";
             document.getElementById("blockintro").innerHTML = "信息:无";
             break;
-        case "A09":
-            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇A09";
+        case "A05":
+            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇A05";
+            document.getElementById("comprtInfo-status").className = "alert alert-info";
+            document.getElementById("comprtInfo-status").innerHTML = "正常";
+            document.getElementById("blockcordN").innerHTML = "N:23.132033";
+            document.getElementById("blockcordS").innerHTML = "S:23.131049";
+            document.getElementById("blockcordW").innerHTML = "W:114.203604";
+            document.getElementById("blockcordE").innerHTML = "E:114.205437";
+            document.getElementById("blockm2").innerHTML = "面积:7111㎡";
+            document.getElementById("blockdate").innerHTML = "日期:2016/03/15";
+            document.getElementById("blockproduct").innerHTML = "作物:树木";
+            document.getElementById("blockintro").innerHTML = "信息:无";
+            break;
+        case "A06":
+            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇A06";
+            document.getElementById("comprtInfo-status").className = "alert alert-info";
+            document.getElementById("comprtInfo-status").innerHTML = "正常";
+            document.getElementById("blockcordN").innerHTML = "N:23.132033";
+            document.getElementById("blockcordS").innerHTML = "S:23.131049";
+            document.getElementById("blockcordW").innerHTML = "W:114.203604";
+            document.getElementById("blockcordE").innerHTML = "E:114.205437";
+            document.getElementById("blockm2").innerHTML = "面积:7111㎡";
+            document.getElementById("blockdate").innerHTML = "日期:2016/03/15";
+            document.getElementById("blockproduct").innerHTML = "作物:树木";
+            document.getElementById("blockintro").innerHTML = "信息:无";
+            break;
+        case "A07":
+            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇A07";
             document.getElementById("comprtInfo-status").className = "alert alert-info";
             document.getElementById("comprtInfo-status").innerHTML = "正常";
             document.getElementById("blockcordN").innerHTML = "N:23.132033";
@@ -101,6 +127,45 @@ function show_hd(hdimageurl,Bid) {
             break;
         case "B02":
             document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇B02";
+            document.getElementById("comprtInfo-status").className = "alert alert-warning";
+            document.getElementById("comprtInfo-status").innerHTML = "异常";
+            document.getElementById("blockcordN").innerHTML = "N:23.125540";
+            document.getElementById("blockcordS").innerHTML = "S:23.124755";
+            document.getElementById("blockcordW").innerHTML = "W:114.204310";
+            document.getElementById("blockcordE").innerHTML = "E:114.205209";
+            document.getElementById("blockm2").innerHTML = "面积:6284㎡";
+            document.getElementById("blockdate").innerHTML = "日期:2016/03/15";
+            document.getElementById("blockproduct").innerHTML = "作物:树木";
+            document.getElementById("blockintro").innerHTML = "信息:农田异常信息";
+            break;
+        case "B03":
+            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇B03";
+            document.getElementById("comprtInfo-status").className = "alert alert-warning";
+            document.getElementById("comprtInfo-status").innerHTML = "异常";
+            document.getElementById("blockcordN").innerHTML = "N:23.125540";
+            document.getElementById("blockcordS").innerHTML = "S:23.124755";
+            document.getElementById("blockcordW").innerHTML = "W:114.204310";
+            document.getElementById("blockcordE").innerHTML = "E:114.205209";
+            document.getElementById("blockm2").innerHTML = "面积:6284㎡";
+            document.getElementById("blockdate").innerHTML = "日期:2016/03/15";
+            document.getElementById("blockproduct").innerHTML = "作物:树木";
+            document.getElementById("blockintro").innerHTML = "信息:农田异常信息";
+            break;
+        case "B04":
+            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇B04";
+            document.getElementById("comprtInfo-status").className = "alert alert-warning";
+            document.getElementById("comprtInfo-status").innerHTML = "异常";
+            document.getElementById("blockcordN").innerHTML = "N:23.125540";
+            document.getElementById("blockcordS").innerHTML = "S:23.124755";
+            document.getElementById("blockcordW").innerHTML = "W:114.204310";
+            document.getElementById("blockcordE").innerHTML = "E:114.205209";
+            document.getElementById("blockm2").innerHTML = "面积:6284㎡";
+            document.getElementById("blockdate").innerHTML = "日期:2016/03/15";
+            document.getElementById("blockproduct").innerHTML = "作物:树木";
+            document.getElementById("blockintro").innerHTML = "信息:农田异常信息";
+            break;
+        case "B05":
+            document.getElementById("blocktitle").innerHTML = "博罗县罗阳镇B05";
             document.getElementById("comprtInfo-status").className = "alert alert-warning";
             document.getElementById("comprtInfo-status").innerHTML = "异常";
             document.getElementById("blockcordN").innerHTML = "N:23.125540";
@@ -154,7 +219,7 @@ function show_hd(hdimageurl,Bid) {
         default:
     }
 
-    var hdimg = document.getElementById("hdimg");
-    hdimg.src = hdimageurl;
+    //var hdimg = document.getElementById("hdimg");
+    //hdimg.src = hdimageurl;
 }
 
